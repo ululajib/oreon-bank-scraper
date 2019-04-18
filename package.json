@@ -1,0 +1,11 @@
+{
+  "name": "pluto-bank-scraper",
+  "version": "1.0.0",
+  "description": "libs scraper bank local indonesia ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ululalbab",
+  "license": "ISC"
+}
