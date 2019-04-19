@@ -12,3 +12,4 @@ txt
 .npmrc
 nano.save
 package-lock.json
+.git
