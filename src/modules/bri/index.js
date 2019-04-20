@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const Oreon = require('oreon-scraper');
-const phantom = require('phantom');
 const path = require('path');
+const scraper = require('./scraper');
 const validator = require('./validator');
 const routines = {
   checkCredentials,
@@ -29,5 +29,7 @@ module.exports = function scraperBri(options) {
 }
 
 function checkCredentials() {
-  return 'ajib';
+  const {cridentials, userAgent} = this.settings;
+  return Promise.resolve()
+    .then(() => scraper.login(this.oreon, {cridentials, userAgent}))
 }

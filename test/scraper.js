@@ -8,4 +8,7 @@ const options = {
 }
 
 scraperBank = scraperBank(options)
-console.log(scraperBank.checkCredentials());
+scraperBank.checkCredentials()
+  .then((result) => {
+    console.log(result);
+  })
