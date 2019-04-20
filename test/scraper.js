@@ -2,8 +2,8 @@ let scraperBank = require('../src')
 const options = {
   bank: 'bri',
   cridentials: {
-    username: 'foo',
-    password: 'bar'
+    username: 'ronnid0504',
+    password: '123456abc'
   }
 }
 

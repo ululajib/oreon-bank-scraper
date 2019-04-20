@@ -31,7 +31,6 @@ const captchaOptions = {
 const captchaSolver = CaptchaSolver.create(captchaOptions);
 
 function login(oreon, options = {}) {
-  console.log(oreon.request);exit()
   const {cridentials, userAgent} = options;
   const {username, password} = cridentials;
   const cookie = (options.cookie) ? options.cookie : '';
@@ -39,6 +38,7 @@ function login(oreon, options = {}) {
     .then(getFormDataAndCookie)
     .then(({form, cookie}) => {
       const options = {
+        url: urls.loginPost,
         cookie,
         headers: {
           userAgent,
