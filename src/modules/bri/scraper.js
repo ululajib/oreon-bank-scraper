@@ -8,6 +8,7 @@ const moment = require('moment');
 const CaptchaSolver = require('../../libs/captcha-solver');
 const Scraper = {
   login,
+  logout,
 }
 
 module.exports = Scraper;
@@ -33,30 +34,68 @@ const captchaSolver = CaptchaSolver.create(captchaOptions);
 function login(oreon, options = {}) {
   const {cridentials, userAgent} = options;
   const {username, password} = cridentials;
-  const cookie = (options.cookie) ? options.cookie : '';
-  return Promise.resolve()
-    .then(getFormDataAndCookie)
-    .then(({form, cookie}) => {
-      const options = {
-        url: urls.loginPost,
-        cookie,
-        headers: {
-          userAgent,
-          Origin: urls.uri,
-          Referer: urls.login,
-        },
-        post: form,
-      }
-      return oreon.request(options)
-        .tap((resp) => oreon.saveHtml('postLogin0')(resp.body))
-        .then((response) => {
-          const {error, message} = parser.checkIsUseAccount(response.body);
-          if (error) {
-            throw new Error(message);
-          }
-          return response.cookie;
-        })
-    })
+  const cookie = (cridentials.cookie) ? cridentials.cookie : '';
+  if (cridentials.cookie) {
+    return checkLogin()
+      .then((loggedIn) => {
+        if (loggedIn.status) {
+          return loggedIn.cookie;
+        }
+        return doLogin()
+      })
+  }
+
+  return doLogin()
+
+  function checkLogin() {
+    return Promise.resolve()
+      .then(() => {
+        const options = {
+          url: urls.getFormMutasi,
+          cookie,
+          headers: {
+            Referer: urls.getFormAccount,
+            Host: urls.host,
+            userAgent
+          },
+          // debugCommand: true,
+        }
+        return oreon.request(options)
+          .tap((resp) => oreon.saveHtml('checkLogin')(resp.body))
+          .then(({cookie, body}) => {
+            return {
+              status: parser.checkCookie(body),
+              cookie,
+            }
+          })
+      })
+  }
+
+  function doLogin() {
+    return Promise.resolve()
+      .then(getFormDataAndCookie)
+      .then(({form, cookie}) => {
+        const options = {
+          url: urls.loginPost,
+          cookie,
+          headers: {
+            userAgent,
+            Origin: urls.uri,
+            Referer: urls.login,
+          },
+          post: form,
+        }
+        return oreon.request(options)
+          .tap((resp) => oreon.saveHtml('postLogin0')(resp.body))
+          .then((response) => {
+            const {error, message} = parser.checkIsUseAccount(response.body);
+            if (error) {
+              throw new Error(message);
+            }
+            return response.cookie;
+          })
+      })
+  }
 
   /**
   * retrieve the form of post login data and string cookies
@@ -113,6 +152,25 @@ function login(oreon, options = {}) {
       })
 
   }
+}
+
+function logout(oreon, options = {}) {
+  const {cridentials, userAgent, cookie} = options;
+  return Promise.resolve()
+    .then(() => {
+      const options = {
+        url: urls.logout,
+        cookie,
+        headers: {
+          Referer: urls.loginPost,
+          Host: urls.host,
+          useragent: userAgent,
+        }
+      }
+      return oreon.request(options)
+        .get('body')
+        .tap(oreon.saveHtml('logout'))
+    })
 }
 
 function getFormDatalogin(formData = {}){

@@ -2,6 +2,8 @@ const host = 'ib.bri.co.id';
 const uri = `https://${host}/`;
 
 const urls = {
+  host,
+  uri,
   main: `${uri}ib-bri/`,
   login: `${uri}ib-bri/Login.html`,
   loginPost: `${uri}ib-bri/Homepage.html`,
