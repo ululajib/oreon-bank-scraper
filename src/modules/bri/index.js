@@ -6,6 +6,7 @@ const validator = require('./validator');
 const routines = {
   checkCredentials,
   logout,
+  getMutasi,
 }
 const userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0';
 module.exports = function scraperBri(options) {
@@ -39,4 +40,11 @@ function logout(cookie = '') {
   const {cridentials, userAgent} = this.settings;
   return Promise.resolve()
     .then(() => scraper.logout(this.oreon, {cridentials, userAgent, cookie}))
+}
+
+function getMutasi() {
+  const {cridentials, userAgent} = this.settings;
+  return Promise.resolve()
+    .then(() => scraper.login(this.oreon, {cridentials, userAgent}))
+    .then((cookie) => scraper.getMutasi(this.oreon, {cookie, userAgent}))
 }

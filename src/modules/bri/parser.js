@@ -9,7 +9,14 @@ module.exports = {
   checkCookie,
   getAccountNo,
   getMutasiData,
+  getDataMutasi,
   checkIsUseAccount
+}
+
+function getDataMutasi(html) {
+  const accoutNo = getAccountNo(html);
+  const form = parserFormMutasi(html);
+  return {accoutNo, form}
 }
 
 function getMutasiData(html) {

@@ -22,9 +22,19 @@ test('Integration BRI - checkCredentials', (assert) => {
     .catch(assert.end)
 })
 
-test.only('Integration BRI - logout', (assert) => {
+test('Integration BRI - logout', (assert) => {
   assert.plan(1);
   briScraper.logout(cridentials.cookie)
+    .then((result) => {
+      console.log(result);
+      assert.ok(Boolean(result), `test checkCredentials ok`);
+    })
+    .catch(assert.end)
+})
+
+test.only('Integration BRI - getMutasi', (assert) => {
+  assert.plan(1);
+  briScraper.getMutasi()
     .then((result) => {
       console.log(result);
       assert.ok(Boolean(result), `test checkCredentials ok`);

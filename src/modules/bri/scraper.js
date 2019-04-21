@@ -9,6 +9,7 @@ const CaptchaSolver = require('../../libs/captcha-solver');
 const Scraper = {
   login,
   logout,
+  getMutasi,
 }
 
 module.exports = Scraper;
@@ -94,6 +95,7 @@ function login(oreon, options = {}) {
             }
             return response.cookie;
           })
+          .tap(oreon.saveFile('cookieString', {ext: 'txt'}))
       })
   }
 
@@ -171,6 +173,56 @@ function logout(oreon, options = {}) {
         .get('body')
         .tap(oreon.saveHtml('logout'))
     })
+}
+
+function getMutasi(oreon, options = {}) {
+  let {cookie, userAgent} = options;
+  return Promise.resolve()
+    .then(() => {
+      const options = {
+        url: urls.getFormMutasi,
+        headers: {
+          Referer: urls.getFormAccount,
+          Host: urls.host,
+          userAgent,
+        },
+        cookie,
+      }
+      return oreon.request(options)
+        .then((resp) => {
+          cookie = (resp.cookie)
+          return resp
+        })
+        .get('body')
+        .tap(oreon.saveHtml('getFormMutasi'))
+        .then(parser.getDataMutasi)
+    })
+    .then(getMutasiwithAccount)
+    .tap(oreon.saveJson('Mutaasi'))
+
+    function getMutasiwithAccount({accoutNo, form}) {
+      return Promise.mapSeries(accoutNo, (noRek, index) =>
+          Promise.resolve()
+            .then(() => {
+              form.ACCOUNT_NO = noRek;
+              const options = {
+                url: urls.getMutasi,
+                headers: {
+                  Referer: urls.getMutasi,
+                  Host: urls.host,
+                  userAgent,
+                },
+                cookie,
+                post: form,
+              }
+              return oreon.request(options)
+                .get('body')
+                .tap(oreon.saveHtml(`mutasiWithNorek${index}`))
+                .then(parser.getMutasiData)
+            })
+        )
+        .tap(oreon.saveJson('mapMutasi'))
+    }
 }
 
 function getFormDatalogin(formData = {}){
