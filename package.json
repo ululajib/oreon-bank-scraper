@@ -1,6 +1,6 @@
 {
   "name": "pluto-bank-scraper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "libs scraper bank local indonesia ",
   "main": "src/index.js",
   "scripts": {
