@@ -7,10 +7,23 @@ module.exports = {
   loginPost,
   parserFormMutasi,
   checkCookie,
+  cookieHttp,
   getAccountNo,
   getMutasiData,
   getDataMutasi,
-  checkIsUseAccount
+  checkIsUseAccount,
+  concatArrayMutasi,
+}
+
+function concatArrayMutasi(array) {
+  const result = [];
+  array.map((items) => {
+    items.map((item) => {
+      result.push(item)
+    })
+  })
+
+  return result;
 }
 
 function getDataMutasi(html) {
@@ -73,6 +86,27 @@ function checkCookie(html) {
   return false
 }
 
+function cookieHttp(cookies) {
+  cookies = parserJson(cookies);
+  const Cookie = cookies.map((cookie) => {
+    let {key, value} = cookie
+    if (typeof key === 'undefined') {
+      key = 'foo'
+      value = 'bar'
+    }
+    return `${key}=${value}`;
+  })
+  .filter((item) => {
+    return item !== 'foo=bar';
+  })
+  return {
+    Cookie,
+    cookieString: Cookie.join('; ')
+  }
+  function parserJson(cookie) {
+    return JSON.parse(JSON.stringify(cookie));
+  }
+}
 
 function checkIsUseAccount(html) {
   const $ = cheerio.load(html);
@@ -82,19 +116,28 @@ function checkIsUseAccount(html) {
     error = true;
     message = isUseAccount;
   }
+  const errorCode = $('title').text()
+  if (/General Error/ig.test(errorCode)) {
+    error = true;
+    message = $('#form-wrap > form > h2').text();
+  }
+
   return {error, message};
 }
 
 function parserFormMutasi(html) {
   const $ = cheerio.load(html);
+  const fromDate = moment().format('YYYY-MM-DD');
+  const toDate = moment().format('YYYY-MM-DD');
+
   let posts = $('form').serializeArray();
   let post = {};
   posts.forEach((item) => {
     post[item.name] = item.value;
   });
-  post.FROM_DATE = moment().format('YYYY-MM-DD');
-  post.TO_DATE = moment().format('YYYY-MM-DD');
-  post['data-lenght'] = 2
+  post.FROM_DATE = fromDate;
+  post.TO_DATE = toDate;
+  post['data-lenght'] = 2;
   post.ACCOUNT_NO = '114701000616535';
   post.submitButton = 'Tampilkan';
   return post;

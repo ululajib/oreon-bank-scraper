@@ -10,6 +10,7 @@ const Scraper = {
   login,
   logout,
   getMutasi,
+  checkLoginWithCookie,
 }
 
 module.exports = Scraper;
@@ -32,18 +33,21 @@ const captchaOptions = {
 };
 const captchaSolver = CaptchaSolver.create(captchaOptions);
 
-function login(oreon, options = {}) {
+function login(http, options = {}) {
   const {cridentials, userAgent} = options;
   const {username, password} = cridentials;
-  const cookie = (cridentials.cookie) ? cridentials.cookie : '';
+  let cookie = (cridentials.cookie) ? cridentials.cookie : '';
   if (cridentials.cookie) {
+    http.setCookies(cookie)
     return checkLogin()
       .then((loggedIn) => {
-        if (loggedIn.status) {
-          return loggedIn.cookie;
+        if (loggedIn) {
+          return parser.cookieHttp(http.getCookies())
         }
         return doLogin()
       })
+      .tap(({Cookie, cookieString}) =>
+        http.saveFile('cookieStrL1', {ext: 'txt'})(cookieString))
   }
 
   return doLogin()
@@ -53,49 +57,42 @@ function login(oreon, options = {}) {
       .then(() => {
         const options = {
           url: urls.getFormMutasi,
-          cookie,
           headers: {
             Referer: urls.getFormAccount,
-            Host: urls.host,
-            userAgent
           },
-          // debugCommand: true,
         }
-        return oreon.request(options)
-          .tap((resp) => oreon.saveHtml('checkLogin')(resp.body))
-          .then(({cookie, body}) => {
-            return {
-              status: parser.checkCookie(body),
-              cookie,
-            }
-          })
+        return http.get(options)
+          .get('body')
+          .tap(http.saveHtml('checkLogin'))
+          .then(parser.checkCookie)
       })
   }
 
   function doLogin() {
     return Promise.resolve()
       .then(getFormDataAndCookie)
-      .then(({form, cookie}) => {
+      .then(({form, Cookie}) => {
+        http.setCookies(Cookie)
         const options = {
           url: urls.loginPost,
-          cookie,
           headers: {
-            userAgent,
-            Origin: urls.uri,
             Referer: urls.login,
           },
-          post: form,
+          form
         }
-        return oreon.request(options)
-          .tap((resp) => oreon.saveHtml('postLogin0')(resp.body))
-          .then((response) => {
-            const {error, message} = parser.checkIsUseAccount(response.body);
+        return http.post(options)
+          .get('body')
+          .tap(http.saveHtml('postLogin'))
+          .then(parser.checkIsUseAccount)
+          .then(({error, message}) => {
             if (error) {
               throw new Error(message);
             }
-            return response.cookie;
+            return http.getCookies()
           })
-          .tap(oreon.saveFile('cookieString', {ext: 'txt'}))
+          .then(parser.cookieHttp)
+          .tap(({Cookie, cookieString}) =>
+            http.saveFile('cookieStr', {ext: 'txt'})(cookieString))
       })
   }
 
@@ -148,7 +145,7 @@ function login(oreon, options = {}) {
           .then((form) => {
             return {
               form,
-              cookie: cookie.join('; ')
+              Cookie: cookie,
             }
           });
       })
@@ -156,49 +153,40 @@ function login(oreon, options = {}) {
   }
 }
 
-function logout(oreon, options = {}) {
-  const {cridentials, userAgent, cookie} = options;
+function logout(http, options = {}) {
+  const {cridentials} = options;
+  const {cookie} = cridentials
+  http.setCookies(cookie)
   return Promise.resolve()
     .then(() => {
       const options = {
         url: urls.logout,
-        cookie,
         headers: {
           Referer: urls.loginPost,
-          Host: urls.host,
-          useragent: userAgent,
         }
       }
-      return oreon.request(options)
+      return http.get(options)
         .get('body')
-        .tap(oreon.saveHtml('logout'))
+        .tap(http.saveHtml('logout'))
     })
 }
 
-function getMutasi(oreon, options = {}) {
-  let {cookie, userAgent} = options;
+function getMutasi(http, options = {}) {
   return Promise.resolve()
     .then(() => {
       const options = {
         url: urls.getFormMutasi,
         headers: {
           Referer: urls.getFormAccount,
-          Host: urls.host,
-          userAgent,
         },
-        cookie,
       }
-      return oreon.request(options)
-        .then((resp) => {
-          cookie = (resp.cookie)
-          return resp
-        })
+      return http.get(options)
         .get('body')
-        .tap(oreon.saveHtml('getFormMutasi'))
+        .tap(http.saveHtml('getFormMutasi'))
         .then(parser.getDataMutasi)
     })
     .then(getMutasiwithAccount)
-    .tap(oreon.saveJson('Mutaasi'))
+    .tap(http.saveJson('Mutaasi'))
 
     function getMutasiwithAccount({accoutNo, form}) {
       return Promise.mapSeries(accoutNo, (noRek, index) =>
@@ -209,20 +197,35 @@ function getMutasi(oreon, options = {}) {
                 url: urls.getMutasi,
                 headers: {
                   Referer: urls.getMutasi,
-                  Host: urls.host,
-                  userAgent,
                 },
-                cookie,
-                post: form,
+                form,
               }
-              return oreon.request(options)
+              return http.post(options)
                 .get('body')
-                .tap(oreon.saveHtml(`mutasiWithNorek${index}`))
+                .tap(http.saveHtml(`mutasiWithNorek${index}`))
                 .then(parser.getMutasiData)
             })
         )
-        .tap(oreon.saveJson('mapMutasi'))
+        .then(parser.concatArrayMutasi)
+        .tap(http.saveJson('mapMutasi'))
     }
+}
+
+function checkLoginWithCookie(http, options) {
+  const {cridentials: {cookie}} = options
+  http.setCookies(cookie)
+  return Promise.resolve()
+    .then(() => {
+      const options = {
+        url: urls.getFormAccount,
+        headers: {
+          Referer: 'https://ib.bri.co.id/ib-bri/Homepage.html'
+        }
+      }
+      return http.get(options)
+        .get('body')
+        .tap(http.saveHtml('checkLoginCookie'))
+    })
 }
 
 function getFormDatalogin(formData = {}){

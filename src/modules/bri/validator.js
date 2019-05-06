@@ -8,7 +8,8 @@ module.exports = validator;
 const credentialsScheme = Joi.object().keys({
   username: Joi.string().required(),
   password: Joi.string().required(),
-  cookie: Joi.string().allow('')
+  cookie: Joi.array().allow([]),
+  cookieString: Joi.string().allow('')
 });
 const schemes = {
   credentialsScheme,
