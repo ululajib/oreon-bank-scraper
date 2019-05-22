@@ -26,9 +26,9 @@ function concatArrayMutasi(array) {
   return result;
 }
 
-function getDataMutasi(html) {
+function getDataMutasi(html, query) {
   const accoutNo = getAccountNo(html);
-  const form = parserFormMutasi(html);
+  const form = parserFormMutasi(html, query);
   return {accoutNo, form}
 }
 
@@ -43,7 +43,8 @@ function getMutasiData(html) {
     let type = '';
     let nominal = ''
     let tanggal = tag.eq(0).text().split('/');
-    tanggal = new Date(dateFormat(`${tanggal[1]} ${tanggal[0]} ${tanggal[2]}`, "d mmmm yyyy"));
+    // tanggal = new Date(dateFormat(`${tanggal[1]} ${tanggal[0]} ${tanggal[2]}`, "d mmmm yyyy"));
+    tanggal = moment(`${tanggal[0]} ${tanggal[1]} ${tanggal[2]}`, 'DD MM YY').format('YYYY-MM-DD')
     const noRek = $('#ACCOUNT_NO').val();
     const keterangan = tag.eq(1).text().trim();
     const debet = cleanCurrency(tag.eq(2).text().trim());
@@ -125,10 +126,11 @@ function checkIsUseAccount(html) {
   return {error, message};
 }
 
-function parserFormMutasi(html) {
+function parserFormMutasi(html, query) {
   const $ = cheerio.load(html);
-  const fromDate = moment().format('YYYY-MM-DD');
-  const toDate = moment().format('YYYY-MM-DD');
+  const {from_date, to_date} = query;
+  const fromDate = moment('from_date', 'DD-MM-YYYY').format('YYYY-MM-DD');
+  const toDate = moment('to_date', 'DD-MM-YYYY').format('YYYY-MM-DD');
 
   let posts = $('form').serializeArray();
   let post = {};

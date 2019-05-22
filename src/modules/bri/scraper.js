@@ -36,8 +36,8 @@ const captchaSolver = CaptchaSolver.create(captchaOptions);
 function login(http, options = {}) {
   const {cridentials, userAgent} = options;
   const {username, password} = cridentials;
-  let cookie = (cridentials.cookie) ? cridentials.cookie : '';
-  if (cridentials.cookie) {
+  let cookie = (cridentials.Cookie) ? cridentials.Cookie : '';
+  if (cridentials.Cookie) {
     http.setCookies(cookie)
     return checkLogin()
       .then((loggedIn) => {
@@ -117,7 +117,7 @@ function login(http, options = {}) {
         sitepage.property('customHeaders', {'User-Agent': userAgent})
         return sitepage.open(urls.login)
       })
-      .then(() => sitepage.render('src/modules/bri/htmlBrihome.jpg'))
+      .then(() => sitepage.render(path.resolve(`${__dirname}`, '', `htmlBrihome.jpg`)))
       .then(() => sitepage.cookies())
       .then((cookie) => {
         return sitepage.evaluate(function () {
@@ -155,8 +155,8 @@ function login(http, options = {}) {
 
 function logout(http, options = {}) {
   const {cridentials} = options;
-  const {cookie} = cridentials
-  http.setCookies(cookie)
+  const {Cookie} = cridentials
+  http.setCookies(Cookie)
   return Promise.resolve()
     .then(() => {
       const options = {
@@ -172,6 +172,7 @@ function logout(http, options = {}) {
 }
 
 function getMutasi(http, options = {}) {
+  const {query} = options
   return Promise.resolve()
     .then(() => {
       const options = {
@@ -183,10 +184,16 @@ function getMutasi(http, options = {}) {
       return http.get(options)
         .get('body')
         .tap(http.saveHtml('getFormMutasi'))
-        .then(parser.getDataMutasi)
+        .then((html) => parser.getDataMutasi(html, query))
     })
     .then(getMutasiwithAccount)
     .tap(http.saveJson('Mutaasi'))
+    .then((mutasi) => {
+      return Object.assign({}, {
+        mutasi,
+        cookie: parser.cookieHttp(http.getCookies())
+      })
+    })
 
     function getMutasiwithAccount({accoutNo, form}) {
       return Promise.mapSeries(accoutNo, (noRek, index) =>

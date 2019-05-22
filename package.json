@@ -19,6 +19,7 @@
     "moment": "^2.24.0",
     "oreon-scraper": "^1.0.3",
     "phantom": "^6.2.0",
+    "pluto-captcha": "^1.5.1",
     "prompt": "^1.0.0",
     "tape": "^4.10.1",
     "temp-write": "^3.4.0"
