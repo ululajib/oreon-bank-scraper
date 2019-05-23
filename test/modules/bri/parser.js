@@ -4,10 +4,18 @@ const {getHTML} = require('./test-utils');
 
 const cookieString = cookieStr()
 
-test.only('Parser BRI - getDataMutasi', (assert) => {
+test('Parser BRI - getDataMutasi', (assert) => {
   assert.plan(1)
   const html = getHTML('getFormMutasi');
   const data = BriParser.getDataMutasi(html)
+  console.log(data);
+  assert.ok(Boolean(data), 'Parser getFormMutasi ok')
+})
+
+test.only('Parser BRI - checkErrorBRR2009', (assert) => {
+  assert.plan(1)
+  const html = getHTML('error-BBR2009');
+  const data = BriParser.getMutasiData(html)
   console.log(data);
   assert.ok(Boolean(data), 'Parser getFormMutasi ok')
 })

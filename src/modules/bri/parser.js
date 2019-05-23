@@ -34,7 +34,13 @@ function getDataMutasi(html, query) {
 
 function getMutasiData(html) {
   const $ = cheerio.load(html);
-  const mutasi = []
+  const title = $('title').text();
+  if (/Transaksi Error/g.test(title)) {
+    let messageError = $('.form h2.errorresp').text()
+    messageError += ' - Tunggu sekitar 15 menit untuk menunggu cookie kedaluwarsa'
+    throw new Error(messageError)
+  }
+  const mutasi = [];
   const tagTr = $('#tabel-saldo').find('tr').get().filter((item) => {
     if ($(item).find('td').eq(0).text().trim()) return item
   })
