@@ -1,0 +1,181 @@
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+<head>
+	<script language="JavaScript" type="text/javascript" src="/common/js/validateXSS.js"></script>
+    <link type="text/css" rel="stylesheet" href="/common/css/style.css"/>
+	    <script type="text/javascript" src="/common/js/picklist.js">
+</script>
+
+        <script type="text/javascript" src="/common/js/calendar.js">
+</script>
+<script type="text/javascript" src="/common/js/calendar-helper.js">
+</script>
+<script type="text/javascript" src="/common/js/calendar-en.js">
+</script>
+<link rel="stylesheet" type="text/css" media="all" href="/common/css/theme.css" title="Aqua" />
+
+        <script type="text/javascript" src="/common/js/disable.js">
+</script>
+<script>window.onload = function() {eval(checkLoad);};</script>
+        <script language="JavaScript" type="text/javascript" src="/common/js/aprisma-tab.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<script>
+	var alertPDF = "PDF format for single account only";
+	var alertShowRange = "Date range is not allowed, please use download";
+    var alertAccNo = "Account Number is mandatory";
+    var alertFromDate = "From Date is mandatory";
+    var alertToDate = "To Date is mandatory";
+    var alertReportType = "Report Type is mandatory"
+    var alertTransactionType = "Transaction Type is mandatory"
+    var searchRequest = "/corp/front/transactioninquiry.do?action=getListTransactionByDate";
+    var screenValidity = "false"
+    var requestAction = "";
+    var downloadRequest = "/corp/front/transactioninquiry.do?action=downloadTrxInquiry";
+    var validateRequest = "/corp/front/transactioninquiry.do?action=doCheckValidity";
+    var validateSearchRequest = "/corp/front/transactioninquiry.do?action=doCheckValidity&type=search";
+    var validateDownloadRequest = "/corp/front/transactioninquiry.do?action=doCheckValidity&type=download";
+    var alertProcessTrx = "Transaction is currently being processed";
+    var alertEmpty = "Custom File is mandatory";
+    var summaryRequest = "/corp/front/transactioninquiry.do?action=detailRequest";
+    var validateAndShowRequest = "/corp/front/transactioninquiry.do?action=doCheckValidityAndShow";
+</script>
+
+<script language="JavaScript" type="text/javascript" src="/corp/front/account_management/transaction_inquiry/transaction_inquiry/transaction_inquiry_filter_1.js"></script>
+<body onload="initialize();">
+
+<form name="TransactionInquiryActionForm" method="post" action="/corp/front/transactioninquiry.do" onsubmit="return false;">
+	<table id ="transactioninquiryTab" class="tab-group" width="100%" height="20" cellpadding="0" cellspacing="0"><tr>
+            <td id="Transaction Inquiry" width="198" class="clsHeaderTabListOn"><a class="clsLinkTab" href="/corp/front/transactioninquiry.do?action=transactionByDateRequest">Transaction Inquiry</a></td><script>tempTabGroup = "transactioninquiryTab";</script><script>tempTabChild = "transInq";</script>
+            <td id="Latest Transactions" width="198" class="clsHeaderTabListOff"><a class="clsLinkTab" href="/corp/front/transactioninquiry.do?action=latestTransactionRequest">Last 5 Transactions</a></td><script>tempTabGroup = "transactioninquiryTab";</script>
+    <td> </td></tr></table>
+    <table width="100%" height="20" border="0" cellspacing="0">
+	    <td  valign="middle" class="clsSubHeader"> &nbsp;</td>
+	</table>
+
+    <table class="clsForm" border="0" cellspacing="1" width="100%">
+
+
+
+
+
+	    <tr class="clsEven">
+		    <td width="25%" class="clsMandatory">&nbsp; From Posting Date</TD>
+			    <td>:&nbsp;&nbsp;
+				   <input type="hidden" name="transferDateDay1"><input type="hidden" name="transferDateMonth1"><input type="hidden" name="transferDateYear1"><script>onTextBoxLoader('transferDateDay1', 'transferDateMonth1', 'transferDateYear1', 'null', 'null', 'null', -1, 'transferDateDisplay1');</script><input type="text" size="15" name="transferDateDisplay1" onblur="javascript:checkFormat('transferDateDisplay1','-1','%d/%m/%Y');" disabled="true" onfocus="javascript:onTextBoxFocus('transferDateDisplay1','-1', 'null');" onkeydown="javascript:onTextBoxFilled(event,'transferDateDisplay1','-1');">&nbsp;&nbsp;<a href="#"><img border="0" src="/common/image/calendar.gif" onclick="javascript:showCalendar('transferDateDisplay1', -1, '%d/%m/%Y', null, false, false, 'null');"></a>&nbsp;&nbsp;<a href="#"><img border="0" src="/common/image/Eraser.gif" onclick="javascript:clearCalendarValue('transferDateDisplay1', -1,'%d/%m/%Y');" ></a>&nbsp;&nbsp;<script>renderValue('-1', 'transferDateDisplay1', '%d/%m/%Y', '26', '2', '2019', 'null', 'null', 'null');</script>
+				</td>
+		</tr>
+
+		<tr class="clsEven">
+		    <td width="25%" class="clsMandatory">&nbsp;
+		        To Posting Date
+            </td>
+		    <td>:&nbsp;&nbsp;
+                    <input type="hidden" name="transferDateDay2"><input type="hidden" name="transferDateMonth2"><input type="hidden" name="transferDateYear2"><script>onTextBoxLoader('transferDateDay2', 'transferDateMonth2', 'transferDateYear2', 'null', 'null', 'null', -1, 'transferDateDisplay2');</script><input type="text" size="15" name="transferDateDisplay2" onblur="javascript:checkFormat('transferDateDisplay2','-1','%d/%m/%Y');" disabled="true" onfocus="javascript:onTextBoxFocus('transferDateDisplay2','-1', 'null');" onkeydown="javascript:onTextBoxFilled(event,'transferDateDisplay2','-1');">&nbsp;&nbsp;<a href="#"><img border="0" src="/common/image/calendar.gif" onclick="javascript:showCalendar('transferDateDisplay2', -1, '%d/%m/%Y', null, false, false, 'null');"></a>&nbsp;&nbsp;<a href="#"><img border="0" src="/common/image/Eraser.gif" onclick="javascript:clearCalendarValue('transferDateDisplay2', -1,'%d/%m/%Y');" ></a>&nbsp;&nbsp;<script>renderValue('-1', 'transferDateDisplay2', '%d/%m/%Y', '26', '2', '2019', 'null', 'null', 'null');</script>
+		    </td>
+        </tr>
+
+        <tr class="clsEven">
+           <td width="25%">&nbsp;
+                Transaction Type
+           </td>
+           <td>
+                :&nbsp;&nbsp;
+                <select name="transactionType"><option value="%" selected>All</option><option value="credit">Credit Only</option><option value="debit">Debit Only</option></select>
+           </td>
+        </tr>
+
+        <TR CLASS="clsEven">
+            <TD colspan="3">&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="accountType" value="S" checked="checked" onclick="radioChangeAccountType(this.form)">
+                &nbsp;Single Account
+            </td>
+         </tr>
+        <TR CLASS="clsEven">
+            <TD class="clsMandatory">
+                Account No.
+            </td>
+            <TD>:&nbsp;&nbsp;
+               <script>var lockParam = false;</script><input type="text" name="accountDisplay" size="20" onBlur="javascript:hideHiddenValue('accountDisplay','accountNumber:account.accountNo|accountNm:accountAlias|currDisplay:account.currency.name|curr:account.currency.code|frOrganizationUnit:account.organizationUnit.code|accountTypeCode:account.accountType.code','null','pickList');" value="" />
+<input type="hidden" name="accountNumber" value =""/>
+<input type="hidden" name="accountNm" value =""/>
+<input type="hidden" name="currDisplay" value =""/>
+<input type="hidden" name="curr" value =""/>
+<input type="hidden" name="frOrganizationUnit" value =""/>
+<input type="hidden" name="accountTypeCode" value =""/>
+<label id="pickList"></label>
+<script>javascript:GenerateValue('accountDisplay','accountNumber:account.accountNo|accountNm:accountAlias|currDisplay:account.currency.name|curr:account.currency.code|frOrganizationUnit:account.organizationUnit.code|accountTypeCode:account.accountType.code','null',' - %1(%2)','pickList');</script><a href="#"><img border="0" src="/common/image/picklist.gif" onclick="javascript:CallCustomizePicklistWithSearchParameter('gcm.AccountGroupDetail.getByAccountGroupIdAndIsInquiryPicklistWithAccountType.new','4028969422a559490122e44246a41107:accountGroupId|D,S,L:accountType|MASB001:corporateId','null','ACCOUNT_NO_INQUIRY','pickList','gcm.corp.account.picklist.header.label','gcm.corp.account.picklist.listing.label','accountNumber:account.accountNo|accountNm:accountAlias|currDisplay:account.currency.name|curr:account.currency.code|frOrganizationUnit:account.organizationUnit.code|accountTypeCode:account.accountType.code','accountDisplay','null',' - %1(%2)','null','400','300');"/></a>
+&nbsp;<a href="#"><img border="0" src="/common/image/Eraser.gif" onclick="javascript:onClearClick('accountNumber|accountNm|currDisplay|curr|frOrganizationUnit|accountTypeCode','pickList','null','accountDisplay','null');"/></a>
+            </td>
+        </tr>
+        <TR CLASS ="clsEven">
+            <TD colspan="3">&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="accountType" value="M" onclick="radioChangeAccountType(this.form)">
+                &nbsp;Multiple Account
+            </td>
+        </tr>
+        <TR CLASS ="clsEven">
+            <TD>
+                Account Hierarchy
+            </td>
+            <TD>:&nbsp;&nbsp;
+                <select name="accountHierarchy" onchange="selectHierarchy(this.form)"><option value=" " selected>All</option></select>
+             </TD>
+        </TR>
+        <TR CLASS ="clsTable">
+            <TD colspan = "3">
+                DOWNLOAD SPECIFICATION
+            </td>
+        </tr>
+        <tr class="clsEven">
+           <td width="25%" class="clsMandatory">
+                Custom File Format
+           </td>
+           <td>
+                :&nbsp;&nbsp;
+                <select name="customFile"><option value=" "></option><option value="Excel">Excel</option><option value="CSV">CSV</option><option value="Text Standard">Text Standard</option><option value="MT942 - Today Transaction">MT942 - Today Transaction</option><option value="pdf">PDF</option></select>
+           </td>
+        </tr>
+        <TR class="clsEven">
+            <TD>
+               Consolidated Print
+            </td>
+            <TD>&nbsp;
+                <input type="radio" name="processAccountIndividually" value="Y" checked="checked">
+                &nbsp;Yes
+                <input type="radio" name="processAccountIndividually" value="N">
+                &nbsp;No
+            </td>
+        </tr>
+
+        </table>
+        <table width="100%">
+	        <tr class="clsButton">
+		        <td colspan="2" align="right">
+                    <input type="button" name="show1" value="Show" onclick="onClickButton(this.form,'show');">
+                    <input type="button" name="search1" value="Search" onclick="onClickSearch(this.form,'search');">
+                    <input type="button" name="download1" value="Download" onclick="onClickButton(this.form,'download');">
+                 </td>
+		    </tr>
+	    </table>
+
+	    <input type="hidden" name="frOrganizationUnitNm" value="">
+    <input type="hidden" name="screenState" value="TRX_DATE">
+    <input type="hidden" name="accountHierarchy" value="">
+    <input type="hidden" name="archiveFlag" value="N">
+    <input type="hidden" name="checkDate" value="Y">
+    <input type="hidden" name="timeLength" value="31">
+    <input type="hidden" name="showTimeLength" value="31">
+</form>
+</body>
+</html>

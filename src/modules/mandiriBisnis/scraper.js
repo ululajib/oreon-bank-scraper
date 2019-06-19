@@ -5,8 +5,10 @@ const urls = require('./urls');
 const path = require('path');
 const {writeFile, readFileSync} = require('fs');
 const moment = require('moment');
+const Dates = require('date-math');
 const Scraper = {
   login,
+  getMutasi,
 }
 module.exports = Scraper;
 function login(http, options = {}) {
@@ -31,7 +33,6 @@ function login(http, options = {}) {
       .then(() => {
         const options = {
           url: urls.menuRequest,
-          headers,
           qs: {
             action: 'menuRequest'
           },
@@ -70,10 +71,148 @@ function login(http, options = {}) {
           .then(parser.checkLogin)
           .then(() => parser.cookieHttp(http.getCookies()))
       })
+      .then(() => {
+        const options = {
+          url: 'https://mcm.bankmandiri.co.id/corp/common/login.do?action=menuRequest',
+          qs: {
+            action: 'menuRequest'
+          },
+        }
+        setRefererHeader(options, 'https://mcm.bankmandiri.co.id/corp/common/login.do?action=doMainFrame')
+        return http.get(options)
+          .get('body')
+          .tap(http.saveHtml('stepLogin2'))
+          .then(() => http.getCookies())
+      })
       .tap(({Cookie, cookieString}) =>
         http.saveFile('cookieStrL1', {ext: 'txt'})(cookieString))
   }
 
+}
+
+function getMutasi(http, options = {}) {
+  const {query = {}} = options
+  const Headers = {
+    'upgrade-insecure-requests': 1,
+    'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+    accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    authority: 'mcm.bankmandiri.co.id',
+  }
+  return Promise.resolve()
+    .then(() => {
+      const options = {
+        url: urls.transaction,
+        headers: Headers,
+      }
+      setRefererHeader(options, urls.menuRequest)
+      console.log(options);
+      return http.get(options)
+        .get('body')
+        .tap(http.saveHtml('getMutasi0'))
+        .then(parser.paraseInquiry)
+    })
+    .then((urlInquiry) => {
+      const options = {
+        url: urlInquiry,
+      }
+      setRefererHeader(options, urls.menuRequest)
+      return http.get(options)
+        .get('body')
+        .tap(http.saveHtml('getMutasi1'))
+        .then(parser.fetchNoRekening)
+    })
+    .then((noReks) => {
+      return Promise.mapSeries(noReks, (noRek, index) =>
+        Promise.resolve({noRek, index})
+          .then(({noRek, index}) => getMutasion({noRek, index}))
+      )
+    })
+
+    function getMutasion({noRek, index}) {
+      const postQuery = generatePostQuery(noRek)
+      const options = {
+        url: `${urls.getMutasi}${postQuery.query}`,
+        form: postQuery.post,
+      }
+      return http.post(options)
+        .get('body')
+        .tap(http.saveHtml(`resultMutasi${index}`))
+        .then((html) => parser.parserMutasi({html, noRek}))
+    }
+
+    function get_mont_ago() {
+      let today = new Date();
+      // return today;
+      return Dates.day.shift(today, -1);
+    }
+
+    function generatePostQuery(noRek) {
+      let monthAgo = get_mont_ago();
+      let today = new Date();
+      let transferDateDay1 = today.getDate() -1;
+      let transferDateMonth1 = today.getMonth() + 1;
+      let transferDateYear1 = today.getFullYear();
+      let transferDateDay2 = today.getDate();
+      let transferDateMonth2 = today.getMonth() + 1;
+      let transferDateYear2 = today.getFullYear();
+      let transactionType = '%25';
+      let timeLength =  new Date(today.getFullYear(), today.getMonth() + 1 , 0).getDate();
+      let showTimeLength = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+      let screenState = 'TRX_DATE';
+      let checkDate = 'Y';
+      let archiveFlag = 'N';
+      let accountType = 'S';
+      let accountTypeCode = '';
+      let accountNumber = noRek;
+      let accountDisplay = noRek;
+      let accountNm = 'MASINDO BUANA WISATA';
+      let curr = 'IDR';
+      let currDisplay = 'IDR';
+      let frOrganizationUnit = '12412';
+      let customFile= 'CSV';
+
+      let post = {
+        customFile,
+        accountNm,
+        frOrganizationUnit,
+        accountNm,
+        transferDateDay1,
+        transferDateDay2,
+        transferDateMonth1,
+        transferDateMonth2,
+        transferDateYear1,
+        transferDateYear2,
+        transactionType,
+        timeLength,
+        showTimeLength,
+        screenState,
+        checkDate,
+        archiveFlag,
+        accountType,
+        accountNumber,
+        accountDisplay,
+        curr,
+        currDisplay,
+        accountTypeCode,
+      }
+      let query = {
+        action: 'downloadTrxInquiry',
+        day1: transferDateDay1,
+        day2: transferDateDay2,
+        mon1: transferDateMonth1,
+        mon2: transferDateMonth2,
+        year1: transferDateYear1,
+        year2: transferDateYear2,
+        accountNumber,
+        frOrganizationUnitNm: '',
+        accountType,
+        currDisplay,
+        type: 'download',
+        screen: 'search',
+        trxFilter: '%25'
+      }
+      return {post, query: querystring.stringify(query)}
+    }
 }
 
 function setRefererHeader(options = {}, referer = '') {

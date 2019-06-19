@@ -13,9 +13,23 @@ const cridentials = {
 
 const mandiriScraper = mandiriBisnisScraper({cridentials});
 
-test.only('Integration Mandiri - checkCredentials', (assert) => {
+test('Integration Mandiri - checkCredentials', (assert) => {
   assert.plan(1);
   mandiriScraper.checkCredentials()
+    .then((result) => {
+      console.log(JSON.stringify(result, null, 2));
+      assert.ok(Boolean(result), `test checkCredentials ok`);
+    })
+    .catch(assert.end)
+})
+
+test.only('Integration Mandiri - checkCredentials', (assert) => {
+  assert.plan(1);
+  const query = {
+    from_date: '01-05-2019',
+    to_date: '15-05-2019',
+  }
+  mandiriScraper.getMutasi(query)
     .then((result) => {
       console.log(JSON.stringify(result, null, 2));
       assert.ok(Boolean(result), `test checkCredentials ok`);

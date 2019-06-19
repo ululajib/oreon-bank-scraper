@@ -5,7 +5,9 @@ module.exports = {
   cookieHttp,
   checkLogin,
   checkCookie,
+  fetchNoRekening,
   getFromLogin,
+  paraseInquiry,
 }
 function getFromLogin({html, cridentials}) {
   const {username, password, corpId} = cridentials
@@ -67,6 +69,62 @@ function checkLogin(html) {
   }
   return true;
 }
+
+function paraseInquiry(html) {
+  const $ = cheerio.load(html)
+  let data = $('img[src="/common/image/picklist.gif"]').attr('onclick').replace('javascript\:', '')
+  data = 'https://mcm.bankmandiri.co.id' + encodeURI(eval(data))
+  return data;
+}
+
+function fetchNoRekening(html) {
+  const $ = cheerio.load(html)
+  let noRek = [];
+  $('.clsAprismaTable').find('tr').each(function(index, el) {
+    if($(this).find('a').text())
+    noRek.push($(this).find('a').text());
+  });
+  return noRek;
+}
+
+var searchMethod = "?action=SearchRequest&";
+var picklistName = "PicklistName=";
+var customizeQueryParam = "&queryName=";
+var searchParameterParam = "&SearchParameter=";
+var dynamicPickListAction = "/common/dynamic_picklist.do";
+var headerLabel = "&headerLabel=";
+var listingHeaderLabel = "&listingLabel=";
+var hiddenMapper = "&hiddenMapper=";
+var displayParam = "&displayLabel=";
+var textBoxNameParam = "&textBoxParam=";
+var displayFormatParam = "&displayFormatParam=";
+var detailJsParam= "&detailJsParam=";
+var picklistIndexParam= "&picklistIndex=";
+var webAppCustomParamValue= null;
+var posted = false;
+
+function CallCustomizePicklistWithSearchParameter(CustomizeQueryName, searchParameter, dependOn, PicklistKey, displayId, PicklistHeader,
+        PicklistListing, PicklistHidden, textBox, picklistIndex, displayFormat, DetailJs, width, heigh) {
+    var depend ="";
+
+    var dynamicPickListUrl = dynamicPickListAction + searchMethod + picklistName + PicklistKey + customizeQueryParam
+            + CustomizeQueryName + headerLabel + PicklistHeader + listingHeaderLabel + PicklistListing + hiddenMapper
+            + PicklistHidden + displayParam + displayId + GenerateAutoSearchParameter(searchParameter) + textBoxNameParam
+            + textBox + displayFormatParam + displayFormat + "&dependOn=" + depend + picklistIndexParam + picklistIndex;
+
+    if (DetailJs != "") dynamicPickListUrl = dynamicPickListUrl + detailJsParam + DetailJs;
+
+    return dynamicPickListUrl;
+}
+
+function GenerateAutoSearchParameter(searchParameter) {
+    var searchParameterUrl = searchParameterParam + searchParameter;
+    return searchParameterUrl;
+}
+
+
+
+
 
 var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
 var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
