@@ -8,7 +8,12 @@ const cridentials = {
   username: process.env.USERNAME_MANDIRI_BISNIS,
   password: process.env.PASSWORD_MANDIRI_BISNIS,
   corpId: process.env.CORPID_MANDIRI_BISNIS,
-  // Cookie: [],
+  "Cookie": [
+    "JSESSIONID=H5j4dKkdTTK5rKb94JNJJSHJ7Z92Y7cQ0ZgsKs4y7zTCTLbT7jJm!-1200730925!1694537717",
+    "visid_incap_1970073=0pp7kVTRSWaISrUvcGFaXRzkCl0AAAAAQUIPAAAAAAAvxu/G047BG+Td0uNHJV3r",
+    "nlbi_1970073=QKqCMSGAMn0x1KjVs5NZ4gAAAABHJD56fcXuk8ysaO+rWQPE",
+    "incap_ses_1118_1970073=n9soPxYVGAciuJ+tjO+DDxzkCl0AAAAAwPcADPu7zRoQCsc+RNrv0Q=="
+  ],
 }
 
 const mandiriScraper = mandiriBisnisScraper({cridentials});

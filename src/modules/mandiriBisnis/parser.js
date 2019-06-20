@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const moment = require('moment');
+const CSV = require('csv-string');
 
 module.exports = {
   cookieHttp,
@@ -8,6 +9,8 @@ module.exports = {
   fetchNoRekening,
   getFromLogin,
   paraseInquiry,
+  parserMutasi,
+  concatArrayMutasi,
 }
 function getFromLogin({html, cridentials}) {
   const {username, password, corpId} = cridentials
@@ -53,6 +56,44 @@ function cookieHttp(cookies) {
   function parserJson(cookie) {
     return JSON.parse(JSON.stringify(cookie));
   }
+}
+
+function concatArrayMutasi(array) {
+  const result = [];
+  array.map((items) => {
+    items.map((item) => {
+      result.push(item)
+    })
+  })
+
+  return result;
+}
+
+function parserMutasi({html, noRek}) {
+  const $ = cheerio.load(html)
+  if(/Transaction Inquiry Record not found/ig.test(html)) return [];
+  if(/validateXSS.js/ig.test(html)) return [];
+  let mutasi = CSV.parse(html);
+  let output = [];
+  mutasi.forEach((item, index) => {
+    if(index != 0) {
+      let tanggal = item[1].split('/');
+      tanggal = new Date(tanggal[2], tanggal[1], tanggal[0]);
+      let keterangan = item[4];
+      let debet = item[7].slice(0, -3).replace(/\,/g, '');
+      let kredit = item[8].slice(0, -3).replace(/\,/g, '');
+      let type = 'debet';
+      let nominal = debet;
+      if(kredit != 0) {
+        type = 'kredit';
+        nominal = kredit;
+      }
+      if(nominal) {
+        output.push({type, nominal, type, tanggal, keterangan, noRek})
+      }
+    }
+  })
+  return output;
 }
 
 function checkLogin(html) {

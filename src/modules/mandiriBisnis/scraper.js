@@ -6,6 +6,7 @@ const path = require('path');
 const {writeFile, readFileSync} = require('fs');
 const moment = require('moment');
 const Dates = require('date-math');
+const querystring = require('querystring');
 const Scraper = {
   login,
   getMutasi,
@@ -22,6 +23,7 @@ function login(http, options = {}) {
         if (loggedIn) {
           return parser.cookieHttp(http.getCookies());
         }
+        exit()
         return doLogin()
       })
       .tap(({Cookie, cookieString}) =>
@@ -82,7 +84,7 @@ function login(http, options = {}) {
         return http.get(options)
           .get('body')
           .tap(http.saveHtml('stepLogin2'))
-          .then(() => http.getCookies())
+          .then(() => parser.cookieHttp(http.getCookies()))
       })
       .tap(({Cookie, cookieString}) =>
         http.saveFile('cookieStrL1', {ext: 'txt'})(cookieString))
@@ -127,6 +129,8 @@ function getMutasi(http, options = {}) {
           .then(({noRek, index}) => getMutasion({noRek, index}))
       )
     })
+    .then(parser.concatArrayMutasi)
+    .tap(http.saveJson('mapMutasi'))
 
     function getMutasion({noRek, index}) {
       const postQuery = generatePostQuery(noRek)
@@ -140,21 +144,17 @@ function getMutasi(http, options = {}) {
         .then((html) => parser.parserMutasi({html, noRek}))
     }
 
-    function get_mont_ago() {
-      let today = new Date();
-      // return today;
-      return Dates.day.shift(today, -1);
-    }
-
     function generatePostQuery(noRek) {
-      let monthAgo = get_mont_ago();
+      let {from_date, to_date} = query;
+      from_date = from_date.split('-')
+      to_date = to_date.split('-')
       let today = new Date();
-      let transferDateDay1 = today.getDate() -1;
-      let transferDateMonth1 = today.getMonth() + 1;
-      let transferDateYear1 = today.getFullYear();
-      let transferDateDay2 = today.getDate();
-      let transferDateMonth2 = today.getMonth() + 1;
-      let transferDateYear2 = today.getFullYear();
+      let transferDateDay1 = from_date[0];
+      let transferDateMonth1 = from_date[1];
+      let transferDateYear1 = from_date[2];
+      let transferDateDay2 = to_date[0];
+      let transferDateMonth2 = to_date[1];
+      let transferDateYear2 = to_date[2];
       let transactionType = '%25';
       let timeLength =  new Date(today.getFullYear(), today.getMonth() + 1 , 0).getDate();
       let showTimeLength = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
