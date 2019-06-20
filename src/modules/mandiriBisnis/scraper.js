@@ -107,7 +107,6 @@ function getMutasi(http, options = {}) {
         headers: Headers,
       }
       setRefererHeader(options, urls.menuRequest)
-      console.log(options);
       return http.get(options)
         .get('body')
         .tap(http.saveHtml('getMutasi0'))
@@ -131,6 +130,12 @@ function getMutasi(http, options = {}) {
     })
     .then(parser.concatArrayMutasi)
     .tap(http.saveJson('mapMutasi'))
+    .then((mutasi) => {
+      return Object.assign({}, {
+        mutasi,
+        cookie: parser.cookieHttp(http.getCookies())
+      })
+    })
 
     function getMutasion({noRek, index}) {
       const postQuery = generatePostQuery(noRek)
