@@ -1,0 +1,450 @@
+<!-- images preload section -->
+<div style="display:none">
+	<img src="https://ib.bankmandiri.co.id/images/button-kirim.gif" border="0">
+	<img src="https://ib.bankmandiri.co.id/images/button-reset.gif" border="0">
+</div>
+<!-- images preload section -->
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Bank Mandiri - Internet Banking</title>
+	<link rel="stylesheet" href="https://ib.bankmandiri.co.id/stylesheet.css" type="text/css">
+	<script src="https://ib.bankmandiri.co.id/js/clientScript.js" language="JavaScript"></script>
+	<script language="JavaScript">
+	
+		var todayDate=null;
+		var defaultListDate=null;
+		var limitedListDate=null;
+	
+	   function formSubmit(){
+			document.forms[0].action.value = "result";
+			document.forms[0].submit();
+	   }
+	    	  	       
+	   function formCancel()
+	   {
+			document.forms[0].action.value = "form";
+			document.forms[0].submit();
+	   }
+
+       function checkRadio(rdoSearchType){
+
+       if (document.forms[0].searchType.value != null){
+       	//alert(document.forms[0].searchType.value);
+       	rdoSearchType = document.forms[0].searchType.value;
+       }
+
+       if (rdoSearchType == "L") {
+			//document.forms[0].searchType.value = "L";
+		    document.forms[0].fromDay.disabled = true;
+		    document.forms[0].fromMonth.disabled = true;
+		    document.forms[0].fromYear.disabled = true;
+		    document.forms[0].toDay.disabled = true;
+		    document.forms[0].toMonth.disabled = true;
+		    document.forms[0].toYear.disabled = true;
+		    document.forms[0].lastTransaction.value = "";
+		    document.forms[0].lastTransaction.disabled = false;
+
+		}else{
+		    //document.forms[0].searchType.value = "R";
+		    document.forms[0].lastTransaction.value = "";
+		    document.forms[0].lastTransaction.disabled = true;
+            document.forms[0].fromDay.disabled = false;
+		    document.forms[0].fromMonth.disabled = false;
+		    document.forms[0].fromYear.disabled = false;
+		    document.forms[0].toDay.disabled = false;
+		    document.forms[0].toMonth.disabled = false;
+		    document.forms[0].toYear.disabled = false;
+		    //document.forms[0].orderBy.value = "";
+		    //document.forms[0].sortType.value = "";
+            if (document.forms[0].searchType[1].checked)
+                document.forms[0].lastTransaction.disabled = false;
+		}
+	}
+
+	function changeRadioBtn(object)
+	{
+		if(object.lastTransaction.selectedIndex > 0 )
+		{
+			document.forms[0].searchType[1].checked = true;
+		}
+
+	}
+	
+	function SelectDefaultFromAccount() {
+	     if(document.forms[0].fromAccountID.options.length==2)
+	     	document.forms[0].fromAccountID.selectedIndex=1;
+	 }
+
+	function checkFromYear() {
+	    if(document.forms[0].fromYear.options.length==2 && document.forms[0].fromMonth.value<7  ){
+	    	if(document.forms[0].fromYear.selectedIndex<1)
+	     		document.forms[0].fromYear.selectedIndex=1;
+	    }else {
+	       	if(document.forms[0].fromYear.selectedIndex>0)
+	     		document.forms[0].fromYear.selectedIndex=0;
+	     } 		
+	 }
+	 
+	 function checkToYear() {
+	    if(document.forms[0].toYear.options.length==2 && document.forms[0].toMonth.value<7  ){
+	    	if(document.forms[0].toYear.selectedIndex<1)
+	     		document.forms[0].toYear.selectedIndex=1;
+	    }else {
+	       	if(document.forms[0].toYear.selectedIndex>0)
+	     		document.forms[0].toYear.selectedIndex=0;
+	     } 		
+	 }
+	
+	function checkFromMonth() {
+	    if(document.forms[0].fromYear.options.length==2 && document.forms[0].fromMonth.value<7  ){
+	    	if(document.forms[0].fromYear.selectedIndex==0)
+	    		for (var i = 0; i < document.forms[0].fromMonth.options.length; i++) {
+			         if (document.forms[0].fromMonth.options[i].value == 12) {
+			             if (document.forms[0].fromMonth.selectedIndex != i) {
+			                 document.forms[0].fromMonth.selectedIndex = i;
+			             }
+			             break;
+			         }
+			     }
+	    }else {
+	       	if(document.forms[0].fromYear.selectedIndex>0)
+	     		for (var i = 0; i < document.forms[0].fromMonth.options.length; i++) {
+			         if (document.forms[0].fromMonth.options[i].value == 1) {
+			             if (document.forms[0].fromMonth.selectedIndex != i) {
+			                 document.forms[0].fromMonth.selectedIndex = i;
+			             }
+			             break;
+			         }
+			     }
+	     } 		
+	 }	
+	 
+	 function checkToMonth() {
+	    if(document.forms[0].toYear.options.length==2 && document.forms[0].toMonth.value<7  ){
+	    	if(document.forms[0].toYear.selectedIndex==0)
+	    		for (var i = 0; i < document.forms[0].toMonth.options.length; i++) {
+			         if (document.forms[0].toMonth.options[i].value == 12) {
+			             if (document.forms[0].toMonth.selectedIndex != i) {
+			                 document.forms[0].toMonth.selectedIndex = i;
+			             }
+			             break;
+			         }
+			     }
+	    }else {
+	       	if(document.forms[0].toYear.selectedIndex>0)
+	     		for (var i = 0; i < document.forms[0].toMonth.options.length; i++) {
+			         if (document.forms[0].toMonth.options[i].value == 1) {
+			             if (document.forms[0].toMonth.selectedIndex != i) {
+			                 document.forms[0].toMonth.selectedIndex = i;
+			             }
+			             break;
+			         }
+			     }
+	     }	     	
+	 }	
+	 
+	 function listToDate(){
+	 	if(document.forms[0].toMonth.selectedIndex==0){
+	     	//alert(defaultListDate+" "+todayDate);
+	     	var selectedValue=document.forms[0].toDay.options[document.forms[0].toDay.selectedIndex].value;
+	     	document.forms[0].toDay.options.length=0;
+	     	for(var i = todayDate; i <= 31; i++){
+	     		if (selectedValue == i){
+	     			document.forms[0].toDay.options[document.forms[0].toDay.options.length]=new Option(i, i, true, true);
+	     		}else{
+					document.forms[0].toDay.options[document.forms[0].toDay.options.length]=new Option(i, i, true, false);
+	     		}
+	     	}
+	     }else{
+	     	//alert(defaultListDate+" "+todayDate);
+	     	
+	     	if(document.forms[0].toDay.options[0].value!=1){
+	     		var selectedValue=document.forms[0].toDay.options[document.forms[0].toDay.selectedIndex].value;
+		     	document.forms[0].toDay.options.length=0;
+		     	//alert(selectedValue);
+		     	for(var i = 1; i <= 31; i++){
+
+		     		if (selectedValue == i){
+		     			document.forms[0].toDay.options[document.forms[0].toDay.options.length]=new Option(i, i, true, true);
+		     			//document.forms[0].toDay.selectedIndex = i;
+		     			//alert(i);
+		     		}else{
+						document.forms[0].toDay.options[document.forms[0].toDay.options.length]=new Option(i, i, true, false);
+						//alert(i);		     		
+		     		}
+		     	}
+		     	
+	     	}
+	     }
+	 }
+	 
+	  function listFromDate(){
+	 	if(document.forms[0].fromMonth.selectedIndex==0){
+	     	//alert(defaultListDate+" "+todayDate);
+	     	var selectedValue=document.forms[0].fromDay.options[document.forms[0].fromDay.selectedIndex].value;
+	     	document.forms[0].fromDay.options.length=0;
+	     	for(var i = todayDate; i <= 31; i++){
+	     		if (selectedValue == i){
+	     			document.forms[0].fromDay.options[document.forms[0].fromDay.options.length]=new Option(i, i, true, true);
+	     		}else{
+					document.forms[0].fromDay.options[document.forms[0].fromDay.options.length]=new Option(i, i, true, false);
+	     		}
+	     	}
+	     }else{
+	     	//alert(defaultListDate+" "+todayDate);
+	     	
+	     	if(document.forms[0].fromDay.options[0].value!=1){
+	     		var selectedValue=document.forms[0].fromDay.options[document.forms[0].fromDay.selectedIndex].value;
+		     	document.forms[0].fromDay.options.length=0;
+		     	//alert(selectedValue);
+		     	for(var i = 1; i <= 31; i++){
+
+		     		if (selectedValue == i){
+		     			document.forms[0].fromDay.options[document.forms[0].fromDay.options.length]=new Option(i, i, true, true);
+		     			//document.forms[0].toDay.selectedIndex = i;
+		     			//alert(i);
+		     		}else{
+						document.forms[0].fromDay.options[document.forms[0].fromDay.options.length]=new Option(i, i, true, false);
+						//alert(i);		     		
+		     		}
+		     	}
+		     	
+	     	}
+	     }
+	 }
+	 
+	 function changecode()
+	{
+		//alert(document.forms[0].randomImg.src);
+   		document.forms[0].randomImg.src="/retail/randomImg.do?.tmp="+Math.random();;
+	}
+	
+	function setDefaultDate(){
+		defaultListDate=document.forms[0].toDay.options;
+		todayDate=document.forms[0].toDay.options[document.forms[0].toDay.selectedIndex].value;
+	}  
+	
+	</script>
+
+</head>
+<form name="TrxHistoryInqForm" method="post" action="/retail/TrxHistoryInq.do">
+
+<input type="hidden" name="action" value="result">
+<body bgcolor="#F7FCFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="setFocus(document.forms[0].fromAccount);checkRadio(&apos;R&apos;);SelectDefaultFromAccount();setDefaultDate();">
+<table border="0" cellpadding="0" cellspacing="0" width="500">
+	   <tr height="1"><td colspan="3">&#xA0;</td></tr>
+	   <tr height="1">
+			<td height="1" colspan="3"><span class="catatantext">
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						
+          <td width="400">&#xA0;<span class="catatantext">26 Jun 2019, 09:33:38 </span></td>
+						<td width="100"><div align="right"><a href="https://ib.bankmandiri.co.id/#" style="TEXT-DECORATION: none" onclick="javascript:newWindow(&apos;help/helpme-0050.html&apos;)"><span class="text-bold"><b>HELP</b></span></a></div>
+						</td>
+					</tr>
+				</table>
+			</span></td>
+	    </tr>
+	    <tr height="1">
+	         <td height="1" colspan="3" bgcolor><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+	    </tr>
+	    <tr>
+	        <td width="1" bgcolor><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+	        <td valign="top" width="512">
+            <div align="center">
+                <table border="0" cellpadding="2" cellspacing="0" width="98%">
+                    <tr height="8"><td><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td></tr>
+                    <tr><td><span class="header">MUTASI REKENING</span></td></tr>
+                    <tr height="5"><td height="5"><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0">&#xA0;</td></tr>
+                </table>
+                
+                <table border="0" cellpadding="2" cellspacing="1" width="98%">
+					<tr height="25">
+	                    <td height="25" width="225" bgcolor="#DDF2FA"><span class="text-bold">Nomor Rekening</span></td>
+	                    <td height="25" bgcolor="#DDF2FA"><span class="text-bold">:</span></td>
+	                    <td height="25" bgcolor="#DDF2FA">
+	                    <select name="fromAccountID"><option value>Silahkan Pilih</option>
+							<option value="20100715043818">1120006450881 - Tabungan Rp.</option>
+<option value="20180609045954">9000012824406 - Tabungan Rp.</option></select>
+						    
+						</td>
+	                </tr>
+                    <tr><td colspan="3"><input type="radio" name="searchType" value="R" checked="checked" onclick="checkRadio(&apos;R&apos;);"><a href="javascript:document.forms[0].searchType[0].click();"><span class="text-bold">Pilihan Jangka Waktu</span></a></td></tr>
+                    <tr>
+	                    <td width="200" bgcolor="#DDF2FA" align="left"><span class="text-bold">Periode Awal Transaksi</span></td>
+	                    <td height="25" bgcolor="#DDF2FA"><span class="text-bold">:</span></td>
+	                    <td bgcolor="#DDF2FA">
+								<select name="fromDay"><option value="1">01</option>
+<option value="2">02</option>
+<option value="3">03</option>
+<option value="4">04</option>
+<option value="5">05</option>
+<option value="6">06</option>
+<option value="7">07</option>
+<option value="8">08</option>
+<option value="9">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26" selected="selected">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option></select>
+							
+								<select name="fromMonth" onchange="checkFromYear();listFromDate();"><option value="12">Des</option>
+<option value="1">Jan</option>
+<option value="2">Feb</option>
+<option value="3">Mar</option>
+<option value="4">Apr</option>
+<option value="5">Mei</option>
+<option value="6" selected="selected">Jun</option></select>														
+	
+	                            <select name="fromYear" onchange="checkFromMonth();"><option value="2018">2018</option>
+<option value="2019" selected="selected">2019</option></select>
+							
+	                    </td>
+					</tr>
+	                <tr>
+	                    <td width="200" align="left"><span class="text-bold">Periode Akhir Transaksi</span></td>
+	                    <td height="25"><span class="text-bold">:</span></td>
+	                    <td>
+                            <select name="toDay"><option value="1">01</option>
+<option value="2">02</option>
+<option value="3">03</option>
+<option value="4">04</option>
+<option value="5">05</option>
+<option value="6">06</option>
+<option value="7">07</option>
+<option value="8">08</option>
+<option value="9">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26" selected="selected">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option></select>
+                            
+                            <select name="toMonth" onchange="checkToYear();listToDate();"><option value="12">Des</option>
+<option value="1">Jan</option>
+<option value="2">Feb</option>
+<option value="3">Mar</option>
+<option value="4">Apr</option>
+<option value="5">Mei</option>
+<option value="6" selected="selected">Jun</option></select>														
+                            
+                            <select name="toYear" onchange="checkToMonth();"><option value="2018">2018</option>
+<option value="2019" selected="selected">2019</option></select>
+							
+							
+							
+                            
+	                    </td>
+	                </tr>
+                    <tr>
+                    	<td height="25" colspan="3">&#xA0;</td>
+                    </tr>
+                    <tr><td width="200" bgcolor="#DDF2FA"><input type="radio" name="searchType" value="L" onclick="checkRadio(&apos;L&apos;);"><a href="javascript:document.forms[0].searchType[1].click();"><span class="text-bold" align="right"><em>n</em> Transaksi Terakhir</span></a></td>
+                        <td height="25" bgcolor="#DDF2FA"><span class="text-bold">:</span></td>
+                        <td height="25" bgcolor="#DDF2FA">
+                        <select name="lastTransaction"><option value>Silahkan Pilih</option>
+                        <option value="5">5 Transaksi Terakhir</option>
+<option value="10">10 Transaksi Terakhir</option>
+<option value="15">15 Transaksi Terakhir</option></select>
+                        </td>
+                    </tr>          
+	                <tr>
+	                    <td width="200" align="left"><span class="text-bold">Tampilkan Berdasarkan</span></td>
+	                    <td height="25"><span class="text-bold">:</span></td>
+	                    <td>
+                            <select name="sortType"><option value="Date">Tanggal</option>
+<option value="AllDescription">Jenis Transaksi</option>
+<option value="Balance">Jumlah</option></select>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td width="200" align="left" bgcolor="#DDF2FA"><span class="text-bold">Urutkan Berdasarkan</span></td>
+	                    <td height="25" bgcolor="#DDF2FA"><span class="text-bold">:</span></td>
+	                    <td bgcolor="#DDF2FA">
+                            <select name="orderBy"><option value="ASC">Mulai dari yang kecil</option>
+<option value="DESC">Mulai dari yang besar</option></select>
+	                    </td>
+	                </tr>
+                    
+                    <tr height="25">
+                        <td height="25" colspan="3" align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="114">
+								<tr height="21">
+									<td></td>
+									<td>&#xA0;</td>
+									<td></td>
+                                </tr>
+                                <tr height="21">
+									<td height="21" width="112" class="text-bold"><a href="javascript:formCancel();"><img src="https://ib.bankmandiri.co.id/images/button-reset.gif" border="0"></a></td>
+                                    <td width="112" height="21"><a href="javascript:formSubmit();" id="linksubmit" onclick="if(send(this.form)){ formSubmit(); } return false;"><span class="text-bold"><div id="buttonsubmit"><img src="https://ib.bankmandiri.co.id/images/button-kirim.gif" border="0"></div></span></a><div id="buttonprocess" style="display: none;"><img src="https://ib.bankmandiri.co.id/images_en/button-processing.gif" border="0"></div></td>
+                                    <td height="21" width="16"><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+                                </tr>                                 
+                            </table>
+                            <hr size="1" noshade>
+                        </td>
+                    </tr>
+                    <tr><td colspan="3"><span class="catatan">Keterangan:</span></td></tr>
+              		<tr><td colspan="3"><span class="catatantext"><ol><li>Anda dapat memilih mutasi dengan menggunakan pilihan jangka waktu atau jumlah transaksi terakhir yang ingin ditampilkan.</li><li>Data transaksi yang dapat ditampilkan adalah 6 bulan terakhir sejak tanggal hari ini, dengan rincian data transaksi maksimal 1 (satu) Bulan  mutasi transaksi.</li></ol></span></td></tr>              
+                </table>
+				
+	        </div>
+	        </td>
+		    <td width="1" bgcolor><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+		</tr>
+		<tr height="1"><td colspan="3" bgcolor height="1"><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+		</tr>
+	</table>
+<!-- Enable enter to submit -->
+<input type="image" src="images/spacer.gif" border="0" width="0" height="0" alt="Enter to submit" onclick="if(send(this.form)){ formSubmit(); } return false;">
+<!-- Enable enter to submit -->
+
+
+	
+</body></form>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+var _analytics_scr = document.createElement('script');
+_analytics_scr.type = 'text/javascript'; _analytics_scr.async = true; _analytics_scr.src = '/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=4&cb=416833407';
+var _analytics_elem = document.getElementsByTagName('script')[0]; _analytics_elem.parentNode.insertBefore(_analytics_scr, _analytics_elem);
+})();
+// ]]>
+</script>
+</html>

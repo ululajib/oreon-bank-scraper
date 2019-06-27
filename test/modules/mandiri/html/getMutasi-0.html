@@ -1,0 +1,467 @@
+<!-- images preload section -->
+<div style="display:none">
+	<img src="https://ib.bankmandiri.co.id/images/button-kirim.gif" border="0">
+	<img src="https://ib.bankmandiri.co.id/images/button-batal.gif" border="0">
+</div>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Bank Mandiri - Internet Banking</title>
+<link rel="stylesheet" href="https://ib.bankmandiri.co.id/stylesheet.css" type="text/css">
+<script src="https://ib.bankmandiri.co.id/js/clientScript.js" language="JavaScript"></script>
+</head>
+
+<script language="JavaScript">
+	function formSubmit(){
+		document.location="TrxHistoryInq.do?action=result";
+	}
+	
+	function FC_Download(){ 	
+ 		document.forms[0].submit();
+	}
+</script>
+
+<form name="TrxHistoryInqForm" method="post" action="/retail/TrxHistoryInq.do">
+<!--<input type="hidden" name="action" value="result">-->
+<body bgcolor="#F7FCFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="setFocus(document.forms[0].fromAccount);">
+
+	<table border="0" cellpadding="0" cellspacing="0" width="500">
+	   <tr height="1"><td colspan="3">&#xA0;</td></tr>
+	   
+	   <!-- Date -->
+	   <tr height="1">
+			<td height="1" colspan="3"><span class="catatantext">
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr>						
+          				<td width="400">&#xA0;<span class="catatantext">26 Jun 2019, 14:03:47 </span></td>
+						<td width="100"><div align="right"><a href="https://ib.bankmandiri.co.id/#" style="TEXT-DECORATION: none" onclick="javascript:newWindow(&apos;help/helpme-0051.html&apos;)"><span class="text-bold"><b>HELP</b></span></a></div>
+						</td>
+					</tr>
+				</table>
+			</span></td>
+	    </tr>
+	    
+	    <tr height="1">
+	         <td height="1" colspan="3" bgcolor><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+	    </tr>
+	    
+	    <tr>
+	        <td width="1" bgcolor><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+	        <td valign="top" width="512">
+            <div align="center">
+                <table border="0" cellpadding="2" cellspacing="0" width="98%">
+                    <tr height="8"><td><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td></tr>
+                    <tr><td><span class="header">MUTASI REKENING</span></td>
+                        <td width="100"><div align="right"><img src="https://ib.bankmandiri.co.id/images/mandiri_resultlogo.gif" border="0"></div></td></tr>
+                    <tr height="5"><td height="5"><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td></tr>
+                </table>
+
+        <!-- Header -->  
+        <table ="0" cellpadding="2" cellspacing="1" width="100%">
+        	<!-- Transaction Number -->			
+			<tr bgcolor="#DDF2FA" height="25"> 
+				<td height="25" width="225">
+					<span class="text-bold">Nomor Transaksi</span></td>
+				<td height="25">:</td>
+				<td height="25">1906260069969</td>
+			</tr>
+			
+			<!-- Account Number -->
+			<tr height="25">
+				<td height="25" width="225"><span class="text-bold">Nomor Rekening</span></td>
+	            <td height="25">:</td>
+	            <td height="25">1120006450881 Rp.</td>
+	        </tr>                    
+          	
+          	<!-- Account Type -->
+          	<tr bgcolor="#DDF2FA" height="25"> 
+				<td height="25" width="225"><span class="text-bold">Jenis Rekening</span></td>				                    
+			    <td height="25">:</td>				                    
+			    <td height="25">Tabungan                                          </td>
+	        </tr>
+            
+            
+            <!-- Last N Transaction -->
+            
+			
+			<!-- Transaction Period -->		
+            
+			<tr height="25">
+	            <td height="25" width="225"><span class="text-bold">Periode Transaksi</span></td>
+	            <td height="25">:</td>
+	            <td height="25">
+	                    6 Jun 2019-
+	                    26 Jun 2019
+	            </td>
+			</tr>
+			
+			
+          	
+          	<!-- Sort By -->
+			<tr bgcolor="#DDF2FA" height="25"> 
+				<td height="25" width="225"><span class="text-bold">Tampilkan Berdasarkan</span></td>				     <td height="25">:</td>				                    
+			    <td height="25">Tanggal</td>
+	        </tr>
+	        
+	        <!-- Order By -->
+          	<tr height="25"> 
+				<td height="25" width="225"><span class="text-bold">Urutkan Berdasarkan</span></td>				     <td height="25">:</td>				                    
+			    <td height="25">Mulai dari yang kecil</td>
+	        </tr>
+		</table>
+		<!-- End of Header -->
+		
+		<br>
+
+        <!-- Start of Item List -->        
+        <table border="0" cellpadding="2" cellspacing="1" width="100%">
+		<tr bgcolor="#000066"> 
+            <td class="menu1">Tanggal</td>                        
+            <td class="menu1">Keterangan Transaksi</td>                        
+            <td class="menu1">Debet</td>                        
+            <td class="menu1">Kredit</td>
+        </tr>
+
+        
+        <tr height="25">
+           <td height="25" class="tabledata" bgcolor>13/06/2019</td>
+           <td height="25" class="tabledata" bgcolor>SA Monthly Fee<br>MONTHLY CARD CHARGE 0004616994125228892<br></td>
+           <td height="25" class="tabledata" align="right" bgcolor name="dbtamt">4.500,00</td>
+           <td height="25" class="tabledata" align="right" bgcolor name="crdamt">0,00</td>
+        </tr>
+        
+        <tr height="25">
+           <td height="25" class="tabledata" bgcolor="#DDF2FA">15/06/2019</td>
+           <td height="25" class="tabledata" bgcolor="#DDF2FA">MCM InhouseTrf CS-CS<br>533<br>DARI LAN TABUR<br>533<br></td>
+           <td height="25" class="tabledata" align="right" bgcolor="#DDF2FA" name="dbtamt">0,00</td>
+           <td height="25" class="tabledata" align="right" bgcolor="#DDF2FA" name="crdamt">1.000.000,00</td>
+        </tr>
+        
+        <tr height="25">
+           <td height="25" class="tabledata" bgcolor>18/06/2019</td>
+           <td height="25" class="tabledata" bgcolor>MCM InhouseTrf CS-CS<br>server tehilla<br>DARI RONNI DARMAWAN<br>server tehilla<br></td>
+           <td height="25" class="tabledata" align="right" bgcolor name="dbtamt">0,00</td>
+           <td height="25" class="tabledata" align="right" bgcolor name="crdamt">500.000,00</td>
+        </tr>
+        
+        <tr height="25">
+           <td height="25" class="tabledata" bgcolor="#DDF2FA">18/06/2019</td>
+           <td height="25" class="tabledata" bgcolor="#DDF2FA">MCM InhouseTrf CS-CS<br>400<br>KE MUHAMMAD FAUZAN<br>400<br></td>
+           <td height="25" class="tabledata" align="right" bgcolor="#DDF2FA" name="dbtamt">5.600.000,00</td>
+           <td height="25" class="tabledata" align="right" bgcolor="#DDF2FA" name="crdamt">0,00</td>
+        </tr>
+        
+        <tr height="25">
+           <td height="25" class="tabledata" bgcolor>18/06/2019</td>
+           <td height="25" class="tabledata" bgcolor>MCM InhouseTrf CS-CS<br>pinjam ronni<br>DARI RONNI DARMAWAN<br>pinjam ronni<br></td>
+           <td height="25" class="tabledata" align="right" bgcolor name="dbtamt">0,00</td>
+           <td height="25" class="tabledata" align="right" bgcolor name="crdamt">4.000.000,00</td>
+        </tr>
+        
+		</table>
+		<!-- End of Item List -->
+
+
+		<table border="0" cellpadding="2" cellspacing="1" width="100%">
+        <tr colspan="4">&#xA0;</tr>
+      	<tr bgcolor="#DDF2FA" height="25">
+           <td height="25" width="150"><span class="text-bold">Saldo Awal</span></td>
+           <td height="25">:</td>
+           <td id="openingbal" height="25" align="right" class="tabledata"><span class="text-bold">        
+           	 
+             1.671.666,68
+           	 </span>
+           </td>
+        </tr>
+        
+      	<tr height="25">
+           <td height="25" width="150"><span class="text-bold">Total Kredit</span></td>
+           <td height="25">:</td>
+           <td id="totalcredit" height="25" align="right" class="tabledata"><span class="text-bold">
+             
+             5.500.000,00
+		     </span>
+           </td>
+        </tr>
+      	
+      	<tr bgcolor="#DDF2FA" height="25">
+		   <td height="25" width="150"><span class="text-bold">Total Debet</span></td>
+           <td height="25">:</td>
+           <td id="totaldebit" height="25" align="right" class="tabledata"><span class="text-bold">
+			 
+             5.604.500,00
+             </span>
+		   </td>
+        </tr>
+        
+        
+      	
+      	<tr height="25">
+		<td height="25" width="150"><span class="text-bold">Saldo Akhir</span></td>
+           <td height="25">:</td>
+           <td id="closingbal" height="25" align="right" class="tabledata"><span class="text-bold">
+           
+			1.567.166,68
+        </span>
+		</td>
+        </tr>
+		</table>
+
+        
+
+	<table>
+      	
+		<!--<tr>
+			<td colspan="3">&nbsp;</td>
+		</tr>
+        
+        <tr height="25">
+            <td height="25" colspan="4" align="center">
+	            <table border="0" cellpadding="0" cellspacing="0" width="80%">
+				<tr height="21" align="center">
+              	<td width="33%">&nbsp;</td>
+				<td width="33%">&nbsp;</td>
+				<td width="33%">
+					<select name="downloadType"><option value="CSV">CSV (Excel)</option>
+<option value="TXT">TXT (Text)</option></select>
+			</td>
+		</tr>-->
+		
+		<tr height="21" align="center">
+           	<td width="33%">
+				<a href="javascript:window.print();"><img src="https://ib.bankmandiri.co.id/images/button-cetak.gif" border="0"></a>
+			</td>
+			
+			<td width="33%">
+				<a href="https://ib.bankmandiri.co.id/#"><img src="https://ib.bankmandiri.co.id/images/button-save.gif" border="0" onclick="javascript:window.document.execCommand(&apos;SaveAs&apos;,false,&apos;result.html&apos;);"></a>
+			</td>
+			
+			
+			
+			
+			<td width="33%">
+			
+				<a href="javascript:FC_Download()"><img src="https://ib.bankmandiri.co.id/images/button-download.gif" border="0"></a>
+				<input type="hidden" name="action" value="download">
+			
+			</td>
+			
+			
+			<td width="33%">
+				<select name="downloadType"><option value="CSV">CSV (Excel)</option>
+<option value="TXT">TXT (Text)</option></select>
+			</td>
+			
+		
+			
+		</tr>
+							
+	</table>
+	<br>
+	</div></td>
+	</tr>
+</table>
+        
+    
+	<td width="1" bgcolor><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td>
+	
+	<tr height="1"><td colspan="3" bgcolor height="1"><img src="https://ib.bankmandiri.co.id/images/spacer.gif" width="1" height="1" border="0"></td></tr>
+	
+<!-- Enable enter to submit -->
+<input type="image" src="images/spacer.gif" border="0" width="0" height="0" alt="Enter to submit" onclick="if(send(this.form)){ formSubmit(); } return false;">
+<!-- Enable enter to submit -->
+<script language="JavaScript">
+window.onload = function () {
+ 
+		var accountno = "1120006450881";
+		//validate list and clear container of debit & credit
+		validateDebitAmount(accountno);
+		validateCreditAmount(accountno);
+		//validate opening balance
+		
+		document.getElementById("openingbal").innerText = ""; //clear container
+		document.getElementById("openingbal").innerText = formatMoney(1671666.68, 2); //re-initialize
+		document.getElementById("openingbal").style.font = "bold 8pt verdana";
+		validateAmountSummary(accountno, document.getElementById("openingbal").innerText, 1671666.68);
+		
+		//validate total credit
+		
+		document.getElementById("totalcredit").innerText = ""; //clear container
+		document.getElementById("totalcredit").innerText = formatMoney(5500000.0, 2); //re-initialize
+		document.getElementById("totalcredit").style.font = "bold 8pt verdana";
+		validateAmountSummary(accountno, document.getElementById("totalcredit").innerText, 5500000.0);
+		
+		//validate total debit
+		
+		document.getElementById("totaldebit").innerText = ""; //clear container
+		document.getElementById("totaldebit").innerText = formatMoney(5604500.0, 2); //re-initialize
+		document.getElementById("totaldebit").style.font = "bold 8pt verdana";
+		validateAmountSummary(accountno, document.getElementById("totaldebit").innerText, 5604500.0);
+		
+		//validate closing balance
+		
+		document.getElementById("closingbal").innerText = ""; //clear container
+		document.getElementById("closingbal").innerText = formatMoney(1567166.68, 2); //re-initialize
+		document.getElementById("closingbal").style.font = "bold 8pt verdana";
+		validateAmountSummary(accountno, document.getElementById("closingbal").innerText, 1567166.68);
+		
+}
+
+function validateDebitAmount(accountno) {
+	//get list of displayed debit elements amount on screen
+	var displayedDebitArray = document.getElementsByName("dbtamt");
+	//get processed debit Java array & then assign it to Javascript array
+	var processedDebitArray = [];
+ 
+		processedDebitArray[0] = 4500.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("dbtamt")[0].innerText = "";
+		document.getElementsByName("dbtamt")[0].innerText = formatMoney(processedDebitArray[0], 2);
+		//end initialization
+ 
+		processedDebitArray[1] = 0.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("dbtamt")[1].innerText = "";
+		document.getElementsByName("dbtamt")[1].innerText = formatMoney(processedDebitArray[1], 2);
+		//end initialization
+ 
+		processedDebitArray[2] = 0.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("dbtamt")[2].innerText = "";
+		document.getElementsByName("dbtamt")[2].innerText = formatMoney(processedDebitArray[2], 2);
+		//end initialization
+ 
+		processedDebitArray[3] = 5600000.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("dbtamt")[3].innerText = "";
+		document.getElementsByName("dbtamt")[3].innerText = formatMoney(processedDebitArray[3], 2);
+		//end initialization
+ 
+		processedDebitArray[4] = 0.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("dbtamt")[4].innerText = "";
+		document.getElementsByName("dbtamt")[4].innerText = formatMoney(processedDebitArray[4], 2);
+		//end initialization
+ 
+	//end
+	var displayedDebit = '';
+	var processedDebit = '';
+	if(typeof displayedDebitArray !== 'undefined' && displayedDebitArray.length > 0) {
+		for(var i=0; i<displayedDebitArray.length; i++) {
+			processedDebit = processedDebitArray[i];
+		    displayedDebit = displayedDebitArray[i].innerText;
+		    displayedDebit = displayedDebit.replace(/[^0-9-,]/g, '');
+		    //validate displayed amount if wrong amount, then throw to error page
+		    if(processedDebit > 0) {
+			    if(displayedDebit.charAt(0) == '0' && displayedDebit.charAt(1) != ',') {
+			    	document.location.href = "inquiry/accountdetail/accountdetail_error.jsp?page=account_statement&accountno="+accountno+"&processedBal="+processedDebit+"&displayedBal="+displayedDebit; //please add param later
+					return;
+			    }
+		    }
+		    displayedDebit = parseFloat(displayedDebit.replace(',','.'));
+		    //compare displayed amount on screen with processed amount
+			if(displayedDebit != processedDebit) {
+				document.location.href = "inquiry/accountdetail/accountdetail_error.jsp?page=account_statement&accountno="+accountno+"&processedBal="+processedDebit+"&displayedBal="+displayedDebit; //please add param later
+			}
+		}
+	}
+}
+
+function validateCreditAmount(accountno) {
+	//get list of displayed credit elements amount on screen
+	var displayedCreditArray = document.getElementsByName("crdamt");
+	//get processed credit Java array & then assign it to Javascript array
+	var processedCreditArray = [];
+ 
+		processedCreditArray[0] = 0.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("crdamt")[0].innerText = "";
+		document.getElementsByName("crdamt")[0].innerText = formatMoney(processedCreditArray[0], 2);
+		//end initialization
+ 
+		processedCreditArray[1] = 1000000.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("crdamt")[1].innerText = "";
+		document.getElementsByName("crdamt")[1].innerText = formatMoney(processedCreditArray[1], 2);
+		//end initialization
+ 
+		processedCreditArray[2] = 500000.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("crdamt")[2].innerText = "";
+		document.getElementsByName("crdamt")[2].innerText = formatMoney(processedCreditArray[2], 2);
+		//end initialization
+ 
+		processedCreditArray[3] = 0.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("crdamt")[3].innerText = "";
+		document.getElementsByName("crdamt")[3].innerText = formatMoney(processedCreditArray[3], 2);
+		//end initialization
+ 
+		processedCreditArray[4] = 4000000.0;
+		//clear & re-initialize <td> container
+		document.getElementsByName("crdamt")[4].innerText = "";
+		document.getElementsByName("crdamt")[4].innerText = formatMoney(processedCreditArray[4], 2);
+		//end initialization
+ 
+	//end
+	var displayedCredit = '';
+	var processedCredit = '';
+	if(typeof displayedCreditArray !== 'undefined' && displayedCreditArray.length > 0) {
+		for(var i=0; i<displayedCreditArray.length; i++) {
+			processedCredit = processedCreditArray[i];
+		    displayedCredit = displayedCreditArray[i].innerText;
+		    displayedCredit = displayedCredit.replace(/[^0-9-,]/g, '');
+		    //validate displayed amount if wrong amount, then throw to error page
+		    if(processedCredit > 0) {
+			    if(displayedCredit.charAt(0) == '0' && displayedCredit.charAt(1) != ',') {
+			    	document.location.href = "inquiry/accountdetail/accountdetail_error.jsp?page=account_statement&accountno="+accountno+"&processedBal="+processedCredit+"&displayedBal="+displayedCredit;
+					return;
+			    }
+		    }
+		    displayedCredit = parseFloat(displayedCredit.replace(',','.'));
+		    //compare displayed amount on screen with processed amount
+			if(displayedCredit != processedCredit) {
+				document.location.href = "inquiry/accountdetail/accountdetail_error.jsp?page=account_statement&accountno="+accountno+"&processedBal="+processedCredit+"&displayedBal="+displayedCredit;
+			}
+		}
+	}
+}
+
+function validateAmountSummary(accountno, displayedAmount, processedAmount) {
+	if (processedAmount > 0) {
+		displayedAmount = displayedAmount.replace(/[^0-9-,]/g, '');
+		if(displayedAmount.charAt(0) == '0' && displayedAmount.charAt(1) != ',') {
+			document.location.href = "inquiry/accountdetail/accountdetail_error.jsp?page=account_statement&accountno="+accountno+"&processedBal="+processedAmount+"&displayedBal="+displayedAmount;
+			return;
+		}
+		displayedAmount = parseFloat(displayedAmount.replace(',','.'));
+		if(displayedAmount != processedAmount) {
+			document.location.href = "inquiry/accountdetail/accountdetail_error.jsp?page=account_statement&accountno="+accountno+"&processedBal="+processedAmount+"&displayedBal="+displayedAmount;
+		}
+	}
+}
+
+function formatMoney(number, places, symbol, thousand, decimal) {
+	number = number || 0;
+	places = !isNaN(places = Math.abs(places)) ? places : 2;
+	symbol = symbol !== undefined ? symbol : "";
+	thousand = thousand || ".";
+	decimal = decimal || ",";
+	var negative = number < 0 ? "-" : "",
+	    i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+	    j = (j = i.length) > 3 ? j % 3 : 0;
+	return symbol + negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
+}
+</script>
+</body></form>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+var _analytics_scr = document.createElement('script');
+_analytics_scr.type = 'text/javascript'; _analytics_scr.async = true; _analytics_scr.src = '/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=5&cb=1010066862';
+var _analytics_elem = document.getElementsByTagName('script')[0]; _analytics_elem.parentNode.insertBefore(_analytics_scr, _analytics_elem);
+})();
+// ]]>
+</script>
+</html>

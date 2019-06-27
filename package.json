@@ -11,7 +11,9 @@
   "dependencies": {
     "bluebird": "^3.5.4",
     "cheerio": "^0.22.0",
+    "cookie": "^0.4.0",
     "csv-string": "^3.1.6",
+    "curlrequest": "^1.0.1",
     "date-math": "0.0.1",
     "dateformat": "^3.0.3",
     "events": "^3.0.0",
@@ -23,6 +25,7 @@
     "phantom": "^6.2.0",
     "pluto-captcha": "^1.5.1",
     "prompt": "^1.0.0",
+    "striptags": "^3.1.1",
     "tape": "^4.10.1",
     "temp-write": "^3.4.0"
   },
