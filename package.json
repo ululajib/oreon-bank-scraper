@@ -13,6 +13,7 @@
     "cheerio": "^0.22.0",
     "cookie": "^0.4.0",
     "csv-string": "^3.1.6",
+    "curl-ganteng": "0.0.18",
     "curlrequest": "^1.0.1",
     "date-math": "0.0.1",
     "dateformat": "^3.0.3",
