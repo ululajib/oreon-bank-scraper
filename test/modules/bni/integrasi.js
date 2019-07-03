@@ -23,7 +23,6 @@ test('Integration Mandiri - checkCredentials', (assert) => {
 
 test.only('Integration Mandiri - checkCredentials', (assert) => {
   assert.plan(1);
-  assert.plan(1);
   const query = {
     from_date: '01-05-2019',
     to_date: '15-05-2019',
