@@ -3,6 +3,7 @@ const BCA = require('./bca');
 module.exports = {
   login,
   getMutasi,
+  logout,
 }
 
 function login(http, options = {}) {

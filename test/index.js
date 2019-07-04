@@ -1,0 +1,5 @@
+require('./bca')
+require('./bni')
+require('./bri')
+require('./mandiri')
+require('./mandiriBisnis')

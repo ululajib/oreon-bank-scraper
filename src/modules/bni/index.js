@@ -8,6 +8,7 @@ const {host, uri} = require('./urls');
 const routines = {
   checkCredentials,
   getMutasi,
+  logout,
   // changeCookieHandlers,
 }
 const userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0';
@@ -54,6 +55,12 @@ function getMutasi(query = {}) {
   const {cridentials} = this.settings;
   return Promise.resolve()
     .then(() => scraper.getMutasi(this.http, {cridentials, query}))
+}
+
+function logout() {
+  const {cridentials} = this.settings;
+  return Promise.resolve()
+    .then(() => scraper.logout(this.http, {cridentials}))
 }
 
 function getMaxmounth(query) {
