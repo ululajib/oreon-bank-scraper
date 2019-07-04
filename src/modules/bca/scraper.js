@@ -28,6 +28,12 @@ function getMutasi(http, options = {}) {
       bca.setPassword(password);
       return bca.getMutasi()
     })
+    .then((mutasi) => {
+      return Object.assign({
+        mutasi,
+        cookie: username,
+      })
+    })
 }
 
 function logout(http, options = {}) {

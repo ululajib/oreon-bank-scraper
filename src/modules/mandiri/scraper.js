@@ -103,6 +103,12 @@ function getMutasi(http, options = {}) {
         )
         .then(parser.concatArrayMutasi)
         .tap(http.saveJson('mapMutasi'))
+        .then((mutasi) => {
+          return Object.assign({}, {
+            mutasi,
+            cookie: res.cookie,
+          })
+        })
     })
 }
 

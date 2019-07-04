@@ -29,6 +29,12 @@ function getMutasi(http, options = {}) {
       bni.setPassword(password)
       return bni.getMutasi()
     })
+    .then((mutasi) => {
+      return Object.assign({}, {
+        mutasi,
+        cookie: username,
+      })
+    })
 }
 
 function logout(http, options = {}) {
