@@ -14,7 +14,14 @@ function login(http, options = {}) {
       let bca = new BCA();
       bca.setUser(username);
       bca.setPassword(password);
-      return getMutasi();
+      return bca.login()
+        .then((account) => account.username);
+    })
+    .then((Cookie) => {
+      return {
+        Cookie,
+        cookieString: Cookie
+      }
     })
 }
 

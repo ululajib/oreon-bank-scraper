@@ -17,6 +17,12 @@ function login(http, options = {}) {
       return bni.login()
         .then((account) => account.username)
     })
+    .then((Cookie) => {
+      return {
+        Cookie,
+        cookieString: Cookie,
+      }
+    })
 }
 
 function getMutasi(http, options = {}) {

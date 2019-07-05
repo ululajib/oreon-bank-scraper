@@ -32,7 +32,10 @@ function login(http, options = {}) {
     return checkLogin()
       .then((response) => {
         if (response.isCheckLogin) {
-          return response.cookie
+          return {
+            Cookie: response.cookie,
+            cookieString: response.cookie
+          }
         }
         return doLogin()
       })
@@ -71,6 +74,12 @@ function login(http, options = {}) {
       .tap((res) => http.saveHtml('loginStep2')(res.body))
       .then((res) => parser.checkLoing(res))
       .then((res) => res.cookie)
+      .then((Cookie) => {
+        return {
+          Cookie,
+          cookieString: Cookie,
+        }
+      })
   }
 }
 
