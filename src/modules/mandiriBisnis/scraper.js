@@ -23,7 +23,6 @@ function login(http, options = {}) {
         if (loggedIn) {
           return parser.cookieHttp(http.getCookies());
         }
-        exit()
         return doLogin()
       })
       .tap(({Cookie, cookieString}) =>
