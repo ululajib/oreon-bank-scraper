@@ -57,7 +57,7 @@ function getMutasi(query) {
   return Promise.resolve()
     .then(() => scraper.login(this.http, {cridentials}))
     .tap((cookie) => this.changeCookieHandlers(cookie))
-    .then((cookie) => scraper.getMutasi(this.http, {query, cookie}))
+    .then(({Cookie}) => scraper.getMutasi(this.http, {query, cookie: Cookie}))
 }
 
 function getMaxmounth(query) {
