@@ -88,7 +88,6 @@ function login(http, options = {}) {
       .tap(({Cookie, cookieString}) =>
         http.saveFile('cookieStrL1', {ext: 'txt'})(cookieString))
   }
-
 }
 
 function getMutasi(http, options = {}) {

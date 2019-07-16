@@ -26,7 +26,7 @@ BCA.prototype.getAccount = function () {
   return this.cookie;
 }
 
-BCA.prototype.getMutasi = function (bypass = false) {
+BCA.prototype.getMutasi = function (query = {}, bypass = false) {
   let current = this;
   let account = this.cookie;
   current.bypass = bypass;
@@ -36,7 +36,9 @@ BCA.prototype.getMutasi = function (bypass = false) {
       return tool.curl('https://ibank.klikbca.com/accountstmt.do?value(actions)=acct_stmt', {method: 'POST', cookie: account.cookie, referer: account.referer})
     })
     .then((res) => {
-      let postDate = parser.generate_date();
+      let postDate = parser.generateDate2(query);
+
+      console.log(postDate);
       let post = {
         'value(D1)': '0',
         'value(endDt)': postDate.today,
@@ -182,7 +184,7 @@ BCA.prototype.parseMutasi = function (res) {
       mutasi.push({tanggal, keterangan, nominal, type, noRek});
     }
   });
-  return mutasi;
+  return {mutasi, saldo};
 }
 
 module.exports = BCA;

@@ -55,6 +55,7 @@ function getMutasi(query = {}) {
   const {cridentials} = this.settings;
   return Promise.resolve()
     .then(() => scraper.getMutasi(this.http, {cridentials, query}))
+    .tap(() => scraper.logout(this.http, {cridentials}))
 }
 
 function logout() {

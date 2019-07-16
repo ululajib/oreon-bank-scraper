@@ -33,11 +33,12 @@ function getMutasi(http, options = {}) {
       let bca = new BCA();
       bca.setUser(username);
       bca.setPassword(password);
-      return bca.getMutasi()
+      return bca.getMutasi(query)
     })
-    .then((mutasi) => {
+    .then(({mutasi, saldo}) => {
       return Object.assign({
         mutasi,
+        saldo,
         cookie: username,
       })
     })

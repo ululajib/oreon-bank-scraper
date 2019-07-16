@@ -1,5 +1,6 @@
 const test = require('tape');
 const BCAScraper = require('../../../src/modules/bca/index');
+const parser = require('../../../src/modules/bca/bca/parser');
 const {getTestData} = require('./test-utils');
 const tesData = getTestData('integration');
 
@@ -22,8 +23,8 @@ test('integration BCA, check Credentials', (assert) => {
 test.only('integration BCA, check getMutasi', (assert) => {
   assert.plan(1)
   const query = {
-    from_date: '01-05-2019',
-    to_date: '15-05-2019',
+    from_date: '01-07-2019',
+    to_date: '15-07-2019',
   }
   bcaScraper.getMutasi(query)
     .then((result) => {
@@ -31,4 +32,14 @@ test.only('integration BCA, check getMutasi', (assert) => {
       assert.ok(Boolean(result), 'test getmutasi')
     })
     .catch(assert.end)
+})
+test('parser Bca, generate date 2', (assert) => {
+  assert.plan(1)
+  const query = {
+    from_date: '01-07-2019',
+    to_date: '15-07-2019',
+  }
+  const data = parser.generateDate2(query)
+  console.log(data);
+  assert.ok(Boolean(data), 'assert ok')
 })

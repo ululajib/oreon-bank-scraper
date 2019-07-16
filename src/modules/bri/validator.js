@@ -15,7 +15,7 @@ const dateSchemeMaxNow = Joi.date().max(todayDate);
 const credentialsScheme = Joi.object().keys({
   username: Joi.string().required(),
   password: Joi.string().required(),
-  Cookie: Joi.any().optional(),
+  Cookie: Joi.any().optional().allow(''),
   cookieString: Joi.string().allow('')
 });
 const getMutasiScheme = Joi.object().keys({

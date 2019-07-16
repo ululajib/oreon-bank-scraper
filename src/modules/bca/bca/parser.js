@@ -2,8 +2,15 @@ const tool = require('curl-ganteng');
 const jsonfile = require('jsonfile');
 const fs = require('fs');
 const dateFormat = require('dateformat');
+const moment  = require('moment');
 
-module.exports = {generate_date, parse_mutasi, checklogin, pad}
+module.exports = {
+  generate_date,
+  parse_mutasi,
+  checklogin,
+  pad,
+  generateDate2,
+}
 
 function checklogin(res) {
   if(/Mohon masukkan User ID \/ Password Anda yg benar/i.test(res.body)) {
@@ -69,4 +76,18 @@ function parse_mutasi(res) {
     }
   });
   return mutasi;
+}
+
+function generateDate2(query) {
+  const {from_date, to_date} = query;
+  const fromData = moment(from_date, 'DD-MM-YYYY')
+  const toData = moment(to_date, 'DD-MM-YYYY')
+  return {
+    today: toData.format('DD'),
+    month: Number(toData.format('M')),
+    year: Number(toData.format('YYYY')),
+    lastday: fromData.format('DD'),
+    lastmonth: Number(fromData.format('M')),
+    lastyear: Number(fromData.format('YYYY'))
+  }
 }
