@@ -36,6 +36,7 @@ BNI.prototype.getMutasi = function (cb) {
     .then((res) => {
       let $ = tool.jquery(res.body);
       let mutasi = '';
+      let saldo = 0;
       return tool.curl(account.mutasi, {cookie: res.cookie, referer: res.req_url})
         .then((res) => {
           let post = tool.serialize_post(res);
@@ -70,7 +71,9 @@ BNI.prototype.getMutasi = function (cb) {
                     function myLoop () {           //  create a loop function
                       setTimeout(function () {    //  call a 3s setTimeout when the loop is called
                         promises.push(tool.curl(parser.mutasiLink(res.req_url, i), {cookie: account.cookie, referer: res.req_url}).then((res) => {
-                          return current.parseMutasi(res.body);
+                          const resultParse = current.parseMutasi(res.body);
+                          saldo = resultParse.saldo;
+                          return resultParse.mutasi;
                         }));
                         i++;                     //  increment the counter
                         if (i <= pages) {            //  if the counter < 10, call the loop function
@@ -94,7 +97,9 @@ BNI.prototype.getMutasi = function (cb) {
                     })
                     //
                   } else {
-                    return current.parseMutasi(res.body);
+                    const resultParse = current.parseMutasi(res.body);
+                    saldo = resultParse.saldo;
+                    return resultParse.mutasi;
                   }
                 })
               )
@@ -109,6 +114,9 @@ BNI.prototype.getMutasi = function (cb) {
               return output;
             })
           })
+        })
+        .then((mutasi) => {
+          return {mutasi, saldo}
         })
     })
     function delay(t) {
@@ -235,8 +243,13 @@ BNI.prototype.parseMutasi = function (body) {
   let uraian = [];
   let tipe = [];
   let nominal = [];
+  let saldo = 0;
   let selector = /Pagination/g.test(body) ? '#Pagination' : '#TitleBar';
   $(selector).children('table').each(function(index, el) {
+    if (!saldo && /saldo/i.test($(this).text())) {
+      console.log(index);
+      saldo = $(this).find('.BodytextCol2').text();
+    }
     if(/tanggal transaksi/i.test($(this).text())) {
       let val = $(this).find('.BodytextCol2').text();
       tanggal.push(new Date(dateFormat(val, "d mmmm yyyy")));
@@ -258,7 +271,7 @@ BNI.prototype.parseMutasi = function (body) {
   for (var i = 0; i < tanggal.length; i++) {
     output[i] = {tanggal: tanggal[i], keterangan: uraian[i], type: tipe[i], nominal: nominal[i], noRek};
   }
-  return output;
+  return {mutasi: output, saldo};
 }
 
 

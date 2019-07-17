@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const BNI = require('./bni');
 
 module.exports = {
@@ -28,18 +29,23 @@ function login(http, options = {}) {
 function getMutasi(http, options = {}) {
   const {cridentials, query} = options;
   const {username, password} = cridentials;
+  let bni = new BNI();
   return Promise.resolve()
     .then(() => {
-      let bni = new BNI();
       bni.setUser(username)
       bni.setPassword(password)
       return bni.getMutasi()
     })
-    .then((mutasi) => {
+    .then(({mutasi, saldo}) => {
       return Object.assign({}, {
         mutasi,
         cookie: username,
+        saldo
       })
+    })
+    .tap(() => {
+      bni.setUser(username)
+      return bni.logout();
     })
 }
 
@@ -49,7 +55,7 @@ function logout(http, options = {}) {
   return Promise.resolve()
     .then(() => {
       let bni = new BNI();
-      bni.setUser(username);
-      return bni.getMutasi();
+      bni.setUser(username)
+      return bni.logout();
     })
 }
