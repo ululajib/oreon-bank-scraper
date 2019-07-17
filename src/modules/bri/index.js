@@ -70,11 +70,15 @@ function getMutasi(query = {}) {
     return Promise.reject(error)
   }
   query = value
-  const {cridentials, userAgent} = this.settings;
+  let {cridentials, userAgent} = this.settings;
   return Promise.resolve()
     .then(() => scraper.login(this.http, {cridentials, userAgent}))
     .tap((cookie) => this.changeCookieHandlers(cookie))
     .then(() => scraper.getMutasi(this.http, {query}))
+    .tap(({cookie}) => {
+      cridentials.Cookie = cookie.Cookie
+      return scraper.logout(this.http, {cridentials})
+    })
     // .then(() => dataDami())
 }
 

@@ -198,6 +198,7 @@ function getMutasi(http, options = {}) {
     function getMutasiwithAccount({accoutNo, form}) {
       return Promise.mapSeries(accoutNo, (noRek, index) =>
           Promise.resolve()
+            .delay(1000)
             .then(() => {
               form.ACCOUNT_NO = noRek;
               const options = {
@@ -207,6 +208,7 @@ function getMutasi(http, options = {}) {
                 },
                 form,
               }
+              console.log(options);
               return http.post(options)
                 .get('body')
                 .tap(http.saveHtml(`mutasiWithNorek${index}`))

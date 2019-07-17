@@ -29,7 +29,7 @@ test('Integration BRI - checkCredentials', (assert) => {
     .catch(assert.end)
 })
 
-test.only('Integration BRI - logout', (assert) => {
+test('Integration BRI - logout', (assert) => {
   assert.plan(1);
   briScraper.logout(cridentials.Cookie)
     .then((result) => {
@@ -39,11 +39,11 @@ test.only('Integration BRI - logout', (assert) => {
     .catch(assert.end)
 })
 
-test('Integration BRI - getMutasi', (assert) => {
+test.only('Integration BRI - getMutasi', (assert) => {
   assert.plan(1);
   const query = {
-    from_date: '01-04-2019',
-    to_date: '30-04-2019'
+    from_date: '01-06-2019',
+    to_date: '30-06-2019'
   }
   briScraper.getMutasi(query)
     .then((result) => {

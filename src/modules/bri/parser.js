@@ -135,17 +135,25 @@ function checkIsUseAccount(html) {
 function parserFormMutasi(html, query) {
   const $ = cheerio.load(html);
   const {from_date, to_date} = query;
-  const fromDate = moment('from_date', 'DD-MM-YYYY').format('YYYY-MM-DD');
-  const toDate = moment('to_date', 'DD-MM-YYYY').format('YYYY-MM-DD');
+  const fromDate = moment(from_date, 'DD-MM-YYYY');
+  const toDate = moment(to_date, 'DD-MM-YYYY');
 
   let posts = $('form').serializeArray();
   let post = {};
   posts.forEach((item) => {
     post[item.name] = item.value;
   });
-  post.FROM_DATE = fromDate;
-  post.TO_DATE = toDate;
-  post['data-lenght'] = 2;
+  post.FROM_DATE = fromDate.format('YYYY-MM-DD');
+  post.TO_DATE = toDate.format('YYYY-MM-DD');
+  post.DDAY1 = fromDate.format('DD');
+  post.DMON1 = fromDate.format('MM');
+  post.DYEAR1 = fromDate.format('YYYY');
+  post.DDAY2 = toDate.format('DD');
+  post.DMON2 = toDate.format('MM');
+  post.DYEAR2 = toDate.format('YYYY');
+  post.MONTH = toDate.format('MM');
+  post.YEAR = toDate.format('YYYY');
+  // post['data-lenght'] = 2;
   post.ACCOUNT_NO = '114701000616535';
   post.submitButton = 'Tampilkan';
   return post;
