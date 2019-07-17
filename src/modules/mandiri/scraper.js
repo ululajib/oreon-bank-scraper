@@ -11,6 +11,7 @@ const tools = require('../../libs/curl-f');
 const Scraper = {
   login,
   getMutasi,
+  logout,
 }
 module.exports = Scraper;
 
@@ -99,7 +100,7 @@ function getMutasi(http, options = {}) {
       return Promise.mapSeries(noReks, (noRek, index) =>
         Promise.resolve()
           .then(() => {
-            const post = parser.getFormDataMutasi(res.body, noRek)
+            const post = parser.getFormDataMutasi(res.body, noRek, query)
             const options = {
               post,
               headers,
@@ -116,8 +117,16 @@ function getMutasi(http, options = {}) {
           return Object.assign({}, {
             mutasi,
             cookie: res.cookie,
+            saldo: 0,
           })
         })
+    })
+}
+
+function logout(cookie) {
+  return Promise.resolve()
+    .then(() => {
+      return tools.curl(urls.logout, {cookie, headers})
     })
 }
 

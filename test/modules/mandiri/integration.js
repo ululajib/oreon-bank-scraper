@@ -25,8 +25,8 @@ test('Integration Mandiri - checkCredentials', (assert) => {
 test.only('Integration Mandiri - getMutasi', (assert) => {
   assert.plan(1);
   const query = {
-    from_date: '01-05-2019',
-    to_date: '15-05-2019',
+    from_date: '01-06-2019',
+    to_date: '30-06-2019',
   }
   mandiriScraper.getMutasi(query)
     .then((result) => {

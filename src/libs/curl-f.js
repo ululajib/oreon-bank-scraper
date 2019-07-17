@@ -39,7 +39,6 @@ function curl(url, opt) {
     options = append(options, opt);
     options.insecure = true;
     // console.log(options);
-    console.log(options);
     bcurl.request(options, (err, res) => {
       if(err) reject(err);
       let output = {};

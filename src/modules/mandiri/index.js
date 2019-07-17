@@ -7,7 +7,7 @@ const validator = require('./validator');
 const {host, uri} = require('./urls');
 const routines = {
   checkCredentials,
-  // logout,
+  logout,
   getMutasi,
   // checkLoginWithCookie,
   changeCookieHandlers,
@@ -58,6 +58,13 @@ function getMutasi(query) {
     .then(() => scraper.login(this.http, {cridentials}))
     .tap((cookie) => this.changeCookieHandlers(cookie))
     .then(({Cookie}) => scraper.getMutasi(this.http, {query, cookie: Cookie}))
+    .tap(({cookie}) => scraper.logout())
+}
+
+function logout() {
+  const {cridentials} = this.settings()
+  return Promise.resolve()
+    .then(() => scraper.logout(this.http, {cridentials}))
 }
 
 function getMaxmounth(query) {

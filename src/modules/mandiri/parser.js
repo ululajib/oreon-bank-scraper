@@ -74,19 +74,28 @@ function getNorek(html) {
   return output;
 }
 
-function getFormDataMutasi(html, noRek) {
+function getFormDataMutasi(html, noRek, query) {
   const $ = cheerio.load(html)
+  const {from_date, to_date} = query;
   let url = $('#formAction').val();
   let posts = $('form').serializeArray();
   let post = {};
   posts.forEach((item) => {
     post[item.name] = item.value;
   });
-  let mont_ago = get_mont_ago();
+  // let mont_ago = get_mont_ago();
+  const [frDay, frMonth, frTh] = moment(from_date, 'DD-MM-YYYY')
+    .format('DD-M-YYYY').split('-')
+  const [toDay, toMonth, toTh] = moment(to_date, 'DD-MM-YYYY')
+    .format('DD-M-YYYY').split('-')
+
   post.fromAccountID = noRek.idRek;
-  post.fromDay = mont_ago.getDate();
-  post.fromMonth = mont_ago.getMonth() + 1;
-  post.fromYear = mont_ago.getFullYear();
+  post.fromDay = frDay
+  post.fromMonth = frMonth
+  post.fromYear = frTh
+  post.toDay = toDay
+  post.toMonth = toMonth
+  post.toYear = toTh
   return post;
 }
 
