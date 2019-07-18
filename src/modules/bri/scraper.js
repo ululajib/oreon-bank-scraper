@@ -191,7 +191,8 @@ function getMutasi(http, options = {}) {
     .then((mutasi) => {
       return Object.assign({}, {
         mutasi,
-        cookie: parser.cookieHttp(http.getCookies())
+        cookie: parser.cookieHttp(http.getCookies()),
+        saldo: 0,
       })
     })
 

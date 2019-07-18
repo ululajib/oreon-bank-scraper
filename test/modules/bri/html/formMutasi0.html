@@ -1,57 +1,278 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="id"><head>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id"><head>
 <title>Mutasi Rekening</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Pragma" CONTENT="no-cache">
-<meta http-equiv="Expires" CONTENT="-1"><meta name="Keywords" content="keyword">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta name="Keywords" content="keyword">
 <meta name="Description" content="description">
-<script type="text/javascript" src="js/css-filter.js"></script>
-<script type="text/javascript" src="js/split-deskripsi.js"></script>
-<script type="text/javascript" src="js/ki.js"></script>
-<script type="text/javascript" src="js/css.js"></script>
-<script type="text/javascript" src="js/ajax.js"></script>
-<script language="JavaScript" src="js/input-validation.js"></script><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"><link href = css/bank_print.css rel="stylesheet" type="text/css" media="print"><script src = "js/jquery-1.js" type="text/javascript"></script><script src = "js/jquery.js" type="text/javascript"></script><script language="JavaScript">
+<script type="text/javascript">
+(function(){
+  var a=window;
+  a.dT_?a.console&&a.console.log("Duplicate agent injection detected, turning off redundant initConfig."):navigator.userAgent&&0<=navigator.userAgent.indexOf("RuxitSynthetic")||window.dT_||(window.dT_={cfg:"async=1|bandwidth=300_m|lastModification=1548339370402|xmut=1|tp=500,50,0,1|reportUrl=dynaTraceMonitor|agentUri=/dtagent_A23STVbpqrx_7000000002469.js|auto=1|domain=bri.co.id|rid=RID_386005921|rpid=-67222922|app=Default Application"})})();(function(){function z(){var a=0;try{a=I.performance.timing.navigationStart+Math.floor(I.performance.now())}catch(b){}return 0>=a||isNaN(a)?(new Date).getTime():a}function l(a,b){for(var c=1;c<arguments.length;c++)a.push(arguments[c])}function p(a,b){return parseInt(a,b||10)}function m(a,b){var c=-1;b&&a&&a.indexOf&&(c=a.indexOf(b));return c}function J(a){document.cookie=a+'="";path=/'+(e.domain?";domain="+e.domain:"")+"; expires=Thu, 01 Jan 1970 00:00:01 GMT;"}function K(a){a=encodeURIComponent(a);
+var b=[];if(a)for(var c=0;c<a.length;c++){var f=a.charAt(c);l(b,ia[f]||f)}return b.join("")}function A(a,b,c,f){b||0==b?(b=(""+b).replace(/[;\n\r]/g,"_"),b="DTSA"===a.toUpperCase()?K(b):b,a=a+"="+b+";path=/"+(e.domain?";domain="+e.domain:""),c&&(a+=";expires="+c.toUTCString()),f&&(a+=";Secure"),document.cookie=a):J(a)}function t(a){var b,c,f,d=document.cookie.split(";");for(b=0;b<d.length;b++)if(c=m(d[b],"="),f=d[b].substring(0,c),c=d[b].substring(c+1),f=f.replace(/^\s+|\s+$/g,""),f===a)return"DTSA"===
+a.toUpperCase()?decodeURIComponent(c):c;return""}function L(a){return/^[0-9A-Za-z_\$\+\/\.\-\*%\|]*$/.test(a)}function B(){var a=t(u);return a&&L(a)?a:""}function M(a){A(u,a,void 0,d.bcv("ssc"))}function N(a){a=a||B();var b={sessionId:null,serverId:null};if(a){var c=m(a,"|"),f=a;-1!==c&&(f=a.substring(0,c));c=m(f,"$");-1!==c?(b.sessionId=f.substring(c+1),b.serverId=f.substring(0,c)):b.sessionId=f}return b}function O(a){return N(a).serverId}function P(a){if(a)return N(a).sessionId;if(a=B()){var b=
+m(a,"|");-1!=b&&(a=a.substring(0,b))}return a}function Q(a,b){return Math.floor(Math.random()*(b-a+1))+a}function R(a){var b=window.crypto||window.msCrypto,c;if(b)c=new Int8Array(a),b.getRandomValues(c);else for(c=[],b=0;b<a;b++)c.push(Q(0,32));a=[];for(b=0;b<c.length;b++){var f=Math.abs(c[b]%32),f=String.fromCharCode(f+(9>=f?48:55));a.push(f)}return a.join("")}function S(a){return document.getElementsByTagName(a)}function T(a){var b=a.length;if("number"===typeof b)a=b;else{for(var b=0,c=2048;a[c-
+1];)b=c,c+=c;for(var f=7;1<c-b;)f=(c+b)/2,a[f-1]?b=f:c=f;a=a[f]?c:b}return a}function U(a){var b={};a=a.split("|");for(var c=0;c<a.length;c++){var f=a[c].split("=");2==f.length&&(b[f[0]]=decodeURIComponent(f[1].replace(/\+/g," ")))}return b}function q(a,b){b=b||{};for(var c=a.split("|"),f=0;f<c.length;f++){var d=m(c[f],"="),e;-1===d?(e=c[f],b[e]="1"):(e=c[f].substring(0,d),b[e]=c[f].substring(d+1,c[f].length))}V(b);return b}function C(a){return a in e?e[a]:W[a]}function X(a,b){return a&&b?a==b||-1!==
+a.indexOf("."+b,a.length-("."+b).length):!0}function D(a){e[a]=0>m(e[a],"#"+a.toUpperCase())?e[a]:""}function ja(a,b){var c={};e.legacy="1";if(a){var f=/([a-zA-Z]*)[0-9]{0,4}_([a-zA-Z_0-9]*)_[0-9]+/g.exec(a);f&&f.length&&(c.csu=f[1],c.featureHash=f[2],c.dtVersion=d.version[0]+""+d.version[1])}b&&q(b,c);X(location.hostname,c.domain)||(delete c.domain,c.domainOverride=location.hostname+","+c.domain);return c}function V(a){var b=a.spc;if(b){var c=document.createElement("textarea");c.innerHTML=b;a.spc=
+c.value}}function Y(a){var b=a.agentUri;b&&-1<m(b,"_")&&(b=/([a-zA-Z]*)[0-9]{0,4}_([a-zA-Z_0-9]*)_[0-9]+/g.exec(b),a.csu=b[1],a.featureHash=b[2])}function Z(a){a.bp1||(a.bp2="1");X(location.hostname,e.domain)||(e.domainOverride=location.hostname+","+e.domain,delete e.domain)}function v(a){var b=document.cookie?document.cookie.split(a).length-1:0;if(1<b){var c=e.domain||window.location.hostname,f=window.location.hostname,d=window.location.pathname,g=0,h=0;r.push(a);do{var w=f.substr(g);if(w!=c||"/"!==
+d){var k=a,m=w==c?null:w,n=d,l=1,p=0;do{var q=n.substr(0,l);document.cookie=k+'=""'+(m?";domain="+m:"")+";path="+q+"; expires=Thu, 01 Jan 1970 00:00:01 GMT;";l=n.indexOf("/",l);p++}while(-1!=l&&5>p);k=document.cookie?document.cookie.split(a).length-1:0;k<b&&(r.push(w),b=k)}g=f.indexOf(".",g)+1;h++}while(0!=g&&10>h&&1<b)}}function aa(a,b){for(var c=ba(b),d=!1,e=0;e<c.length;e++)c[e].frameId===x&&(c[e].actionId=a,d=!0);d||l(c,{frameId:x,actionId:a});ca(c)}function ca(a,b){var c="";if(a){for(var c=[],
+d=0;d<a.length;d++)"-"!=a[d].actionId&&(0<d&&0<c.length&&l(c,"p"),l(c,a[d].frameId),l(c,"h"),l(c,a[d].actionId));c=c.join("")}c||(c="-");A("dtPC",c)}function ba(a){var b=t("dtPC"),c=[];if(b&&"-"!==b)for(var b=b.split("p"),d=0;d<b.length;d++){var e=b[d].split("h");if(2===e.length&&e[0]&&e[1]){var g=e[0],h;if(!(h=a)){h=g.split("_");h=p(h[0]);var k=z()%6E8;k<h&&(k+=6E8);h=h+9E5>k}h&&l(c,{frameId:g,actionId:e[1]})}}return c}var n=window;if(!n.dT_||!n.dT_.cfg||"string"!=typeof n.dT_.cfg||n.dT_.initialized)n.console&&
+n.console.log("Initconfig not found or agent already initialized! This is an injection issue.");else if(!(navigator.userAgent&&0<=navigator.userAgent.indexOf("RuxitSynthetic"))){var ka=window.setTimeout,E=window.sessionStorage,d={version:"10119170530111014",cfg:window.dT_&&window.dT_.cfg,ica:1};window.dT_=d;var I=window;d.agentStartTime=z();d.nw=z;d.apush=l;d.st=function(a,b){return ka(a,b)};d.buildType="appmon";var ia={"!":"%21","~":"%7E","*":"%2A","(":"%28",")":"%29","'":"%27",$:"%24",";":"%3B",
+",":"%2C"};d.gSSV=function(a){try{if(E)return E[a]}catch(b){}return null};d.sSSV=function(a,b){try{window.sessionStorage.setItem(a,b)}catch(c){}};d.pn=p;d.iVSC=L;d.io=m;d.dC=J;d.sC=A;d.esc=K;d.gSId=O;d.gDtc=P;d.gSC=B;d.sSC=M;d.gC=t;d.cRN=Q;d.cRS=R;d.gEL=T;d.gEBTN=S;var e={reportUrl:"dynaTraceMonitor",initializedModules:"",csu:"dtagent",dataDtConfig:d.cfg},F;try{F=window.localStorage}catch(a){}(function(){var a=e.dataDtConfig;"string"==typeof a&&-1==m(a,"#CONFIGSTRING")&&(q(a,e),D("domain"),D("auto"),
+D("app"),Y(e))})();var n=S("script"),da=T(n),g,h;if(0<da)for(var k,ea=e.csu+"_bootstrap.js",G=0;G<da;G++)if(k=n[G],k.attributes){var fa=k.attributes.getNamedItem("data-dtconfig"),y=k.src;if(fa)if(h=ja(k.src,fa.value),!g)g=h;else if("1"!=h.syntheticConfig){g=h;break}(k=y&&y.indexOf(ea))&&0<=k&&(k=k+ea.length+5,h||(h=e),h.app=y.length>k?y.substr(k):"Default%20Application")}if(g)for(var H in g)g.hasOwnProperty(H)&&(e[H]=g[H]);(function(){var a=e.csu,a=(a.indexOf("dbg")==a.length-3?a.substr(0,a.length-
+3):a)+"_"+e.app+"_Store";try{var b=F&&F.getItem(a);if(b){var c=U(b),d=q(c.config,c).lastModification||"",g=e.lastModification||"",h=p(d.substr(0,13)),k=p(g.substr(0,13));if(!g||h>=k)for(var l in c)c.hasOwnProperty(l)&&("config"==l?q(c[l],e):e[l]=c[l])}}catch(ma){}})();Z(e);try{var ga=e.ign;if(ga&&(new RegExp(ga)).test(window.location.href)){document.dT_=window.dT_=null;return}}catch(a){}var u="dtCookie";d.gSCN=function(){return u};d.gPCHN=function(){return"x-dtpc"};d.gRHN=function(){return"x-dtreferer"};
+d.pageContextCookieName="dtPC";d.latencyCookieName="dtLatC";d.cfg=e;d.pCfg=U;d.pCSAA=q;d.cFHFAU=Y;d.sCD=Z;d.hDSC=V;d.bcv=function(a){a=C(a);return"false"===a||"0"===a?!1:!!a};d.ncv=function(a){var b=C(a),b=p(b);isNaN(b)&&(b=p(W[a]));return b};d.scv=function(a){return String(C(a))};d.stcv=function(a,b){e[a]=b};d.rplC=function(a){return e=a};var r=[];v("dtPC");v(u);v("dtLatC");v("rxvt");d.aDCI=function(a){0<r.length&&(a.a("dCN",r.join(","),!1),r=[])};var W={ade:"",app:"",bandwidth:"300",bp1:!1,bp2:!1,
+bs:!1,cors:!1,csu:"",cux:!1,disableCookieManager:!1,disableLogging:!1,disableXhrFailures:!1,domain:"",domainOverride:"",doNotDetect:"",dsndb:!1,dsss:!1,euf:!1,evl:"",extblacklist:"",exteventsoff:!1,fa:!1,featureHash:"",ffi:!1,hvt:216E5,ign:"",instr:"",lab:!1,legacy:!1,lmut:!0,lzwd:!1,md:"",mdn:5E3,mepp:10,moa:30,mrt:3,msl:3E4,ncw:!1,ntd:!1,oat:180,pui:!1,reportUrl:"",rid:"",ridPath:"",rpid:"",rt:0,rtl:100,rtp:1,rtt:1E3,rtu:200,sl:100,sosi:!1,spc:"",spl:!1,ssc:!1,st:3E3,svNB:!1,tp:"500,50,3",tvc:3E3,
+uam:!1,WST:!1,xb:"",xbp:null,xmut:!0,xt:0},x=d.agentStartTime%6E8+"_"+p(1E3*Math.random());d.gFId=function(){return x};d.frameId=x;aa(1);d.gPC=ba;d.cPC=aa;d.sPC=ca;var ha;try{ha=E.getItem("dtDisabled")}catch(a){}e.auto||e.legacy||ha||(g=e.agentname||e.csu||"dtagent",g=t("dtUseDebugAgent")?e.debugName||g+"dbg":e.name||g,h=e.agentUri||e.agentLocation+"/"+g+"_"+e.featureHash+"_"+e.buildNumber,e.async?(g=document.createElement("script"),g.setAttribute("src",h),e.async&&g.setAttribute("defer","true"),
+g.setAttribute("crossorigin","anonymous"),h=document.getElementsByTagName("script")[0],h.parentElement.insertBefore(g,h)):document.write('<script type="text/javascript" src="'+h+'">\x3c/script>'));P()||M(""+R(32));var la=O();d.gcSId=function(){return la}}})();</script><script type="text/javascript" src="https://ib.bri.co.id/dtagent_A23STVbpqrx_7000000002469.js" defer="defer"></script><script type="text/javascript" src="https://ib.bri.co.id/js/css-filter.js"></script>
+<script type="text/javascript" src="https://ib.bri.co.id/js/split-deskripsi.js"></script>
+<script type="text/javascript" src="https://ib.bri.co.id/js/ki.js"></script>
+<script type="text/javascript" src="https://ib.bri.co.id/js/css.js"></script>
+<script type="text/javascript" src="https://ib.bri.co.id/js/ajax.js"></script>
+<script language="JavaScript" src="https://ib.bri.co.id/js/input-validation.js"></script>
+
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<link href="https://ib.bri.co.id/css/bank_print.css" rel="stylesheet" type="text/css" media="print">
+	<script src="https://ib.bri.co.id/js/jquery-1.js" type="text/javascript"></script>
+	<script src="https://ib.bri.co.id/js/jquery.js" type="text/javascript"></script>
+
+<script language="JavaScript">
 <!--
 if ( navigator.appName == "Netscape" )
-{document.captureEvents(Event.MOUSEUP)document.captureEvents(Event.KEYPRESS)
-}document.onmouseup = reset;
-document.onkeypress = reset;function reset ( e )
-{parent.reset( e );
+{
+      document.captureEvents(Event.MOUSEUP)
+      document.captureEvents(Event.KEYPRESS)
+}
+
+document.onmouseup = reset;
+document.onkeypress = reset;
+
+function reset ( e )
+{
+   parent.reset( e );
 }
 //-->
 </script>
 <script language="JavaScript">
 <!--
-if (self.location==top.location)window.location = 'login/logout';var submitting = false;
+// if (self.location==top.location)
+//    window.location = 'login/logout';
+
+var submitting = false;
 function checkForm(form)
-{if (form.ACCOUNT_NO.value == "") {alert ("REKENING ASAL harus diisi");form.ACCOUNT_NO.focus();return false;}var start_day = form.DDAY1.options[form.DDAY1.selectedIndex].value;var start_mon = form.DMON1.options[form.DMON1.selectedIndex].value;var start_year = form.DYEAR1.options[form.DYEAR1.selectedIndex].value;var end_day = form.DDAY2.options[form.DDAY2.selectedIndex].value;var end_mon = form.DMON2.options[form.DMON2.selectedIndex].value;var end_year = form.DYEAR2.options[form.DYEAR2.selectedIndex].value;var select_month = form.MONTH.options[form.MONTH.selectedIndex].value;var select_year = form.YEAR.options[form.YEAR.selectedIndex].value;var limit_day = 12;var limit_mon = 09;var limit_year = 2018;var current_date = new Date();var start_date = new Date(start_year,(start_mon - 1),start_day);var end_date = new Date(end_year,(end_mon - 1),end_day);var limit_date =new Date(limit_year, (limit_mon - 1), limit_day);var diff = (end_date-start_date)/60/60/24/1000;if (form.VIEW_TYPE[0].checked) {if (!checkday(parseInt(start_year,10), parseInt(start_mon,10), parseInt(start_day, 10))) {alert("TANGGAL DARI tidak valid");return false;}if (!checkday(parseInt(end_year,10), parseInt(end_mon,10), parseInt(end_day, 10))) {alert("TANGGAL KE tidak valid");return false;}if (end_date < start_date) {alert("Tanggal AWAL tidak boleh melebihi Tanggal AKHIR.");return false;}if (end_date > current_date) {alert("Tanggal AKHIR tidak boleh melebihi tanggal hari ini.");return false;}if(start_mon != end_mon){alert("BULAN AWAL dan BULAN AKHIR harus sama.");return false;}else{if(start_year != end_year){alert("TAHUN AWAL dan TAHUN AKHIR harus sama.");return false;}}if (diff > 30) {alert("Selisih Tanggal AWAL dan Tanggal AKHIR tidak boleh melebihi 1 bulan");return false;}} else{if((select_month >'0303' && select_year == '2019') ||select_year > '2019'){alert("Periode Bulan Tidak Valid");return false;}}form.FROM_DATE.value = start_year+"-"+start_mon+"-"+start_day;form.TO_DATE.value = end_year+"-"+end_mon+"-"+end_day;return true;
-}function submitForm()
-{if(submitting) {alert('Transaksi sedang diproses.\nHarap tunggu.');document.getElementById('frm1').submitButton.disabled = true;return false;} else if(checkForm(document.getElementById('frm1'))) {submitting = true;showLoading();document.getElementById('download').value = "";document.getElementById('frm1').submit();return true;} else {return false;}
-}function download2()
-{if(submitting) {alert('Transaksi sedang diproses.\nHarap tunggu.');document.getElementById('frm1').submitButton.disabled = true;return false;} else if(checkForm(document.getElementById('frm1'))) {document.getElementById('download').value = "download";document.getElementById('frm1').submit();return true;} else {return false;}
-}function getScreenWidthSaldo(){var width = window.parent.innerWidth || parent.document.documentElement.clientWidth || parent.document.body.clientWidth;if (width <= 500){window.parent.scroll(0,parent.document.body.scrollHeight);showLoading();changeDescription();removeLoading();}
+{
+	if (form.ACCOUNT_NO.value == "") {
+		alert ("REKENING ASAL harus diisi");
+		form.ACCOUNT_NO.focus();
+		return false;
+	}
+
+	var start_day = form.DDAY1.options[form.DDAY1.selectedIndex].value;
+	var start_mon = form.DMON1.options[form.DMON1.selectedIndex].value;
+	var start_year = form.DYEAR1.options[form.DYEAR1.selectedIndex].value;
+
+	var end_day = form.DDAY2.options[form.DDAY2.selectedIndex].value;
+	var end_mon = form.DMON2.options[form.DMON2.selectedIndex].value;
+	var end_year = form.DYEAR2.options[form.DYEAR2.selectedIndex].value;
+
+	var select_month = form.MONTH.options[form.MONTH.selectedIndex].value;
+	var select_year = form.YEAR.options[form.YEAR.selectedIndex].value;
+
+	var limit_day = 17;
+	var limit_mon = 01;
+	var limit_year = 2019;
+
+	var current_date = new Date();
+	var start_date = new Date(start_year,(start_mon - 1),start_day);
+	var end_date = new Date(end_year,(end_mon - 1),end_day);
+	var limit_date =  new Date(limit_year, (limit_mon - 1), limit_day);
+	var diff = (end_date-start_date)/60/60/24/1000;
+
+	if (form.VIEW_TYPE[0].checked) {
+		if (!checkday(parseInt(start_year,10), parseInt(start_mon,10), parseInt(start_day, 10))) {
+			alert("TANGGAL DARI tidak valid");
+			return false;
+		}
+		if (!checkday(parseInt(end_year,10), parseInt(end_mon,10), parseInt(end_day, 10))) {
+			alert("TANGGAL KE tidak valid");
+			return false;
+		}
+		if (end_date < start_date) {
+			alert("Tanggal AWAL tidak boleh melebihi Tanggal AKHIR.");
+			return false;
+		}
+		if (end_date > current_date) {
+			alert("Tanggal AKHIR tidak boleh melebihi tanggal hari ini.");
+			return false;
+		}
+
+		if(start_mon != end_mon){
+			alert("BULAN AWAL dan BULAN AKHIR harus sama.");
+			return false;
+		}else{
+			if(start_year != end_year){
+				alert("TAHUN AWAL dan TAHUN AKHIR harus sama.");
+				return false;
+			}
+		}
+
+		if (diff > 30) {
+			alert("Selisih Tanggal AWAL dan Tanggal AKHIR tidak boleh melebihi 1 bulan");
+			return false;
+		}
+	} else{
+		if((select_month >  '0707' && select_year == '2019') ||  select_year > '2019'){
+			alert("Periode Bulan Tidak Valid");
+			return false;
+		}
+	}
+
+	form.FROM_DATE.value = start_year+"-"+start_mon+"-"+start_day;
+	form.TO_DATE.value = end_year+"-"+end_mon+"-"+end_day;
+
+	return true;
+}
+
+function submitForm()
+{
+	if(submitting) {
+	 	alert('Transaksi sedang diproses.\nHarap tunggu.');
+	 	document.getElementById('frm1').submitButton.disabled = true;
+	 	return false;
+	} else if(checkForm(document.getElementById('frm1'))) {
+	 	submitting = true;
+        showLoading();
+		document.getElementById('download').value = "";
+	 	document.getElementById('frm1').submit();
+	 	return true;
+	} else {
+	 	return false;
+	}
+}
+
+function download2()
+{
+	if(submitting) {
+	 	alert('Transaksi sedang diproses.\nHarap tunggu.');
+	 	document.getElementById('frm1').submitButton.disabled = true;
+	 	return false;
+	} else if(checkForm(document.getElementById('frm1'))) {
+		document.getElementById('download').value = "download";
+	 	document.getElementById('frm1').submit();
+	 	return true;
+	} else {
+	 	return false;
+	}
+}
+
+
+
+function getScreenWidthSaldo(){
+    var width = window.parent.innerWidth || parent.document.documentElement.clientWidth || parent.document.body.clientWidth;
+    if (width <= 500){
+        window.parent.scroll(0,parent.document.body.scrollHeight);
+        showLoading();
+        changeDescription();
+        removeLoading();
+    }
 }
 //-->
-</script><script language="JavaScript">
+</script>
+
+<script language="JavaScript">
 <!--
-$(function() {$("#buttonPrint").click( function() {$('#divToPrint').jqprint({ operaSupport: true });return false;});});-->
+$(function() {
+	$("#buttonPrint").click( function() {
+		$('#divToPrint').jqprint({ operaSupport: true });
+		return false;
+	});
+ });
+ -->
 </script>
 </head>
-<body onload="getScreenWidthSaldo();"><div class="form-wrap" id="form-wrap" ><form action="https://ib.bri.co.id/ib-bri/Br11600d.html" method="post" accept-charset="utf-8" name="AccountStatement" id="frm1" class="form" target="content"><div style="display:none">
-<input type="hidden" name="csrf_token_newib" value="bf7fffa1f7402203ace6cdc8f99bc9ab" />
-</div><div class="breadcrumbz"><b>Rekening >> Informasi Saldo &amp; Mutasi >> </b>Mutasi Rekening</div><h2>Mutasi Rekening</h2><div class="flatwrap"><div class="flatwrap-head" style="margin-bottom: 1px;"><div class="icon-pagelines"></div><h4>Form Pencarian Mutasi Rekening</h4><div class="flatwrap-control"><div class="pointerDown"></div></div></div><div style="display:none;" id="frm1hidden"><input name="FROM_DATE" id="FROM_DATE" value="" type="hidden"><input name="TO_DATE" id="TO_DATE" value="" type="hidden"><input name="download" id="download" value="" type="hidden"><input name="data-lenght" id="data-lenght" value=2 ></div><div class="leftform" style="width:99%;border-right: none; margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px;"><hr class="faded" style="margin-top:10px"/><table cellpadding="2" style="width: 98%; margin-top: 0px; margin-bottom :10px;"><tr><td class="label">Dari Rekening</td><td class="label" colspan="3"><select name="ACCOUNT_NO" id="ACCOUNT_NO" class="selection-box"><option value="">- Pilih Salah Satu -</option><option selected='selected' value="114701000616535">114701000616535( Simpedes / IDR )</option></select></td></tr><tr><td class="label"><input name="VIEW_TYPE" id="VIEW_TYPE2" value="2" class="radio" type="radio" checked="checked" ><span class="radio-label">Periode Transaksi dari</span></td><td class="label"><select name="DDAY1" class="selection-box" size="1" onfocus="document.getElementById('frm1').VIEW_TYPE[0].checked=true"><option value="01" >01</option><option value="02" >02</option><option value="03" >03</option><option value="04" >04</option><option value="05" >05</option><option value="06" >06</option><option value="07" >07</option><option value="08" >08</option><option value="09" >09</option><option value="10" >10</option><option value="11" >11</option><option value="12" selected="selected">12</option><option value="13" >13</option><option value="14" >14</option><option value="15" >15</option><option value="16" >16</option><option value="17" >17</option><option value="18" >18</option><option value="19" >19</option><option value="20" >20</option><option value="21" >21</option><option value="22" >22</option><option value="23" >23</option><option value="24" >24</option><option value="25" >25</option><option value="26" >26</option><option value="27" >27</option><option value="28" >28</option><option value="29" >29</option><option value="30" >30</option><option value="31" >31</option></select><select name="DMON1" class="selection-box" size="1" onfocus="document.getElementById('frm1').VIEW_TYPE[0].checked=true"><option value="01" >01</option><option value="02" >02</option><option value="03" selected="selected">03</option><option value="04" >04</option><option value="05" >05</option><option value="06" >06</option><option value="07" >07</option><option value="08" >08</option><option value="09" >09</option><option value="10" >10</option><option value="11" >11</option><option value="12" >12</option></select><select name="DYEAR1" class="selection-box" size="1" onfocus="document.getElementById('frm1').VIEW_TYPE[0].checked=true"><option value="2019" selected="selected">2019</option><option value="2018" >2018</option><option value="2017" >2017</option><option value="2016" >2016</option><option value="2015" >2015</option><option value="2014" >2014</option><option value="2013" >2013</option><option value="2012" >2012</option><option value="2011" >2011</option><option value="2010" >2010</option><option value="2009" >2009</option></select></td><td class="label">Ke</td><td class="label"><select name="DDAY2" class="selection-box" size="1" onfocus="document.getElementById('frm1').VIEW_TYPE[0].checked=true"><option value="01" >01</option><option value="02" >02</option><option value="03" >03</option><option value="04" >04</option><option value="05" >05</option><option value="06" >06</option><option value="07" >07</option><option value="08" >08</option><option value="09" >09</option><option value="10" >10</option><option value="11" >11</option><option value="12" selected="selected">12</option><option value="13" >13</option><option value="14" >14</option><option value="15" >15</option><option value="16" >16</option><option value="17" >17</option><option value="18" >18</option><option value="19" >19</option><option value="20" >20</option><option value="21" >21</option><option value="22" >22</option><option value="23" >23</option><option value="24" >24</option><option value="25" >25</option><option value="26" >26</option><option value="27" >27</option><option value="28" >28</option><option value="29" >29</option><option value="30" >30</option><option value="31" >31</option></select><select name="DMON2" class="selection-box" size="1" onfocus="document.getElementById('frm1').VIEW_TYPE[0].checked=true"><option value="01" >01</option><option value="02" >02</option><option value="03" selected="selected">03</option><option value="04" >04</option><option value="05" >05</option><option value="06" >06</option><option value="07" >07</option><option value="08" >08</option><option value="09" >09</option><option value="10" >10</option><option value="11" >11</option><option value="12" >12</option></select><select name="DYEAR2" class="selection-box" size="1" onfocus="document.getElementById('frm1').VIEW_TYPE[0].checked=true"><option value="2019" selected="selected">2019</option><option value="2018" >2018</option><option value="2017" >2017</option><option value="2016" >2016</option><option value="2015" >2015</option><option value="2014" >2014</option><option value="2013" >2013</option><option value="2012" >2012</option><option value="2011" >2011</option><option value="2010" >2010</option><option value="2009" >2009</option></select></td></tr><tr><td class="label"><input name="VIEW_TYPE" id="VIEW_TYPE0" value="1" class="radio"type="radio"><span class="radio-label">Periode Bulan</span></td><td class="label" colspan="3"><select name="MONTH" id="month" class="selection-box" onfocus="document.getElementById('frm1').VIEW_TYPE[1].checked=true">
+<body onload="getScreenWidthSaldo();">
+	<div class="form-wrap" id="form-wrap">
+		<form action="https://ib.bri.co.id/ib-bri/Br11600d.html" method="post" accept-charset="utf-8" name="AccountStatement" id="frm1" class="form" target="content"><div style="display:none">
+<input type="hidden" name="csrf_token_newib" value="0a34982065d36979b99e7bdcc07f1797">
+</div>
+
+			<div class="breadcrumbz"><b>Rekening &gt;&gt; Informasi Saldo &amp; Mutasi &gt;&gt; </b>Mutasi Rekening</div>
+			<h2>Mutasi Rekening</h2>
+			<div class="flatwrap">
+				<div class="flatwrap-head" style="margin-bottom: 1px;">
+					<div class="icon-pagelines">
+					</div>
+					<h4>
+						Form Pencarian Mutasi Rekening
+					</h4>
+					<div class="flatwrap-control">
+						<div class="pointerDown"></div>
+					</div>
+				</div>
+				<div style="display:none;" id="frm1hidden">
+					<input name="FROM_DATE" id="FROM_DATE" value type="hidden">
+					<input name="TO_DATE" id="TO_DATE" value type="hidden">
+					<input name="download" id="download" value type="hidden">
+                    <input name="data-lenght" id="data-lenght" value="4">
+				</div>
+
+				<div class="leftform" style="width:99%;border-right: none; margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px;">
+					<hr class="faded" style="margin-top:10px">
+					<table cellpadding="2" style="width: 98%; margin-top: 0px; margin-bottom :10px;">
+						<tr>
+							<td class="label">Dari Rekening</td>
+							<td class="label" colspan="3">
+								<select name="ACCOUNT_NO" id="ACCOUNT_NO" class="selection-box">
+									<option value>- Pilih Salah Satu -</option><option selected="selected" value="114701000616535">114701000616535  ( Simpedes / IDR )</option>								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="label">
+								<input name="VIEW_TYPE" id="VIEW_TYPE2" value="2" class="radio" type="radio" checked="checked"><span class="radio-label">Periode Transaksi dari</span>
+							</td>
+							<td class="label">
+								<select name="DDAY1" class="selection-box" size="1" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[0].checked=true">
+									<option value="01" selected="selected">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>								</select>
+								<select name="DMON1" class="selection-box" size="1" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[0].checked=true">
+									<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06" selected="selected">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>								</select>
+								<select name="DYEAR1" class="selection-box" size="1" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[0].checked=true">
+									<option value="2019" selected="selected">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option>								</select>
+							</td>
+							<td class="label">
+								Ke
+							</td>
+							<td class="label">
+								<select name="DDAY2" class="selection-box" size="1" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[0].checked=true">
+									<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30" selected="selected">30</option><option value="31">31</option>								</select>
+								<select name="DMON2" class="selection-box" size="1" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[0].checked=true">
+									<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06" selected="selected">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>								</select>
+								<select name="DYEAR2" class="selection-box" size="1" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[0].checked=true">
+									<option value="2019" selected="selected">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option>								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="label"><input name="VIEW_TYPE" id="VIEW_TYPE0" value="1" class="radio" type="radio"><span class="radio-label">Periode Bulan</span></td>
+							<td class="label" colspan="3">
+							<select name="MONTH" id="month" class="selection-box" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[1].checked=true">
 <option value="01">Jan</option>
 <option value="02">Feb</option>
-<option value="03" selected="selected">Mar</option>
+<option value="03">Mar</option>
 <option value="04">Apr</option>
 <option value="05">May</option>
-<option value="06">Jun</option>
+<option value="06" selected="selected">Jun</option>
 <option value="07">Jul</option>
 <option value="08">Aug</option>
 <option value="09">Sep</option>
 <option value="10">Oct</option>
 <option value="11">Nov</option>
 <option value="12">Dec</option>
-</select> - <select name="YEAR" id="year" class="selection-box" onfocus="document.getElementById('frm1').VIEW_TYPE[1].checked=true">
+</select> - <select name="YEAR" id="year" class="selection-box" onfocus="document.getElementById(&apos;frm1&apos;).VIEW_TYPE[1].checked=true">
 <option value="2019" selected="selected">2019</option>
 <option value="2018">2018</option>
 <option value="2017">2017</option>
@@ -63,6 +284,153 @@ $(function() {$("#buttonPrint").click( function() {$('#divToPrint').jqprint({ op
 <option value="2011">2011</option>
 <option value="2010">2010</option>
 <option value="2009">2009</option>
-</select></td></tr></table></div><!--<div class="rightform"><h3>Helpful Information</h3><p>Transfers made after 7 pm ET will be processed the next business day</p><p>Transaction limit : <br /> Daily Limit Remaining : <br /> Monthly Limit Remaining : <br /> <a href="#">Learn More About Limits</a></p></div> --><div class="form-footer"><div style="margin: 0 auto; height: 25px; width: 83%; margin-top: 13px;"><input value="Tampilkan" name="submitButton" onclick="return submitForm()" type="submit"><input value="Reset" name="resetButton" type="reset" class="reset"><!-- <input value="Download" class="button" name="submitDownload" onclick="download2()" type="button"> --></div></div></div><div id="divToPrint"><div class="flatwrap"><div class="flatwrap-head" style="margin-bottom: 1px;"><div class="icon-pagelines"></div><h4 style="margin-top: 7px">Rincian Rekening Koran</h4><div class="flatwrap-control"><div class="pointerDown"></div></div></div><table class="info1 rekkor" style="margin: 0 auto; margin-bottom: 5px; padding-left: 0px;"><tr><td>Yth. Bapak/Ibu</td><td>RONNI DARMAWAN</td></tr><tr><td>No. Rekening</td><td>&nbsp;114701000616535</td></tr><tr><td>Mata Uang</td><td>IDR</td></tr><tr><td>Periode</td><td>12-Mar-2019 s.d 12-Mar-2019</td></tr><tr><td>Tertanggal</td><td>12/03/2019</td></tr></table><hr class="faded"/><div onload="removeLoading();" class="rekkor-box"><table id="tabel-saldo" class="box" style="width: 97%; margin: 0 auto;"><thead style="background-color: #f9f0c7"><tr><th style="text-align: left;">tanggal</th><th style="text-align: left;">transaksi</th><th style="text-align: right;">debet</th><th style="text-align: right;">kredit</th><th style="text-align: right;">Saldo</th></tr></thead><tbody><tr><td>&nbsp;</td><td class="fieldText">Saldo Awal</td><td>&nbsp;</td><td>&nbsp;</td><td class="fieldValue" align="right">1.838.579,00</td></tr><tr><td>&nbsp;</td><td class="fieldText">Total Mutasi</td><td class="fieldValue" align="right" valign="top">&nbsp;&nbsp;0,00</td><td class="fieldValue" align="right" valign="top">&nbsp;&nbsp;0,00</td><td class="fieldValue" align="right">&nbsp;</td></tr><tr><td>&nbsp;</td><td class="fieldText" valign="top">Saldo Akhir</td><td>&nbsp;</td><td>&nbsp;</td><td class="fieldValue" align="right" valign="top">&nbsp;&nbsp;1.838.579,00</td></tr><!-- <tr><td colspan="5" style="text-align: center; font-size: 11px; color: gray;">LOAD MORE +</td></tr> --></tbody></table><p><b>&nbsp;&nbsp; Catatan :</b></p><ul><li>Data mutasi rekening ini adalah posisi data 12 Mar 2019 14:12:02</li></ul></div><div class="form-footer"><div class="buttons"><input name="Back" value="Kembali" onclick="history.back()" class="reset" type="button"><input name="Close" value="Tutup" onclick="document.location='defaultpg/default_page'" class="reset" type="button"><input class="button" name="Print" value="Cetak" id="buttonPrint" type="button"></div></div></div></div></form></div>
+</select>							</td>
+						</tr>
+
+					</table>
+				</div>
+				<!--<div class="rightform">
+					<h3>Helpful Information</h3>
+					<p>Transfers made after 7 pm ET will be processed the next business day</p>
+					<p>Transaction limit : <br /> Daily Limit Remaining : <br /> Monthly Limit Remaining : <br /> <a href="#">Learn More About Limits</a></p>
+
+				</div> -->
+				<div class="form-footer">
+					<div style="margin: 0 auto; height: 25px; width: 83%; margin-top: 13px;">
+						<input value="Tampilkan" name="submitButton" onclick="return submitForm()" type="submit">
+						<input value="Reset" name="resetButton" type="reset" class="reset">
+						<!-- <input value="Download" class="button" name="submitDownload" onclick="download2()" type="button"> -->
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div id="divToPrint">
+				<div class="flatwrap">
+					<div class="flatwrap-head" style="margin-bottom: 1px;">
+						<div class="icon-pagelines">
+						</div>
+						<h4 style="margin-top: 7px">
+							Rincian Rekening Koran
+						</h4>
+						<div class="flatwrap-control">
+							<div class="pointerDown"></div>
+						</div>
+					</div>
+						<table class="info1 rekkor" style="margin: 0 auto; margin-bottom: 5px; padding-left: 0px;">
+							<tr>
+								<td>Yth. Bapak/Ibu</td>
+								<td>RONNI DARMAWAN</td>
+							</tr>
+							<tr>
+								<td>No. Rekening</td>
+								<td>&#xA0;114701000616535</td>
+							</tr>
+							<tr>
+								<td>Mata Uang</td>
+								<td>IDR</td>
+							</tr>
+							<tr>
+								<td>Periode</td>
+								<td>
+									01-Jun-2019 s.d 30-Jun-2019								</td>
+							</tr>
+							<tr>
+								<td>Tertanggal</td>
+								<td>17/07/2019</td>
+							</tr>
+						</table>
+						<hr class="faded">
+
+                    <div onload="removeLoading();" class="rekkor-box">
+						<table id="tabel-saldo" class="box" style="width: 97%; margin: 0 auto;">
+							<thead style="background-color: #f9f0c7">
+								<tr>
+									<th style="text-align: left;">tanggal</th>
+									<th style="text-align: left;">transaksi</th>
+									<th style="text-align: right;">debet</th>
+									<th style="text-align: right;">kredit</th>
+									<th style="text-align: right;">Saldo</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>&#xA0;</td>
+									<td class="fieldText">Saldo Awal</td>
+									<td>&#xA0;</td>
+									<td>&#xA0;</td>
+									<td class="fieldValue" align="right">1.796.552,80</td>
+								</tr>
+
+
+								<tr>
+									<td style="text-align: left;">15/06/19</td>
+									<td id="desc-1" style="text-align: left;"> Bunga Rekening<br></td>
+																			<td></td>
+																												<td style="text-align: right;">1.098,00</td>
+																			<td style="text-align: right;">1.797.650,80</td>
+
+								</tr>
+
+
+
+								<tr>
+									<td style="text-align: left;">16/06/19</td>
+									<td id="desc-2" style="text-align: left;"> Biaya Administrasi<br></td>
+																			<td style="text-align: right;">5.500,00</td>
+																												<td style="text-align: right"></td>
+																			<td style="text-align: right;">1.792.150,80</td>
+
+								</tr>
+
+
+								<tr>
+									<td>&#xA0;</td>
+									<td class="fieldText">Total Mutasi</td>
+									<td class="fieldValue" align="right" valign="top">&#xA0;&#xA0;
+										5.500,00									</td>
+									<td class="fieldValue" align="right" valign="top">&#xA0;&#xA0;
+										1.098,00									</td>
+									<td class="fieldValue" align="right">&#xA0;</td>
+								</tr>
+
+								<tr>
+									<td>&#xA0;</td>
+									<td class="fieldText" valign="top">Saldo Akhir</td>
+									<td>&#xA0;</td>
+									<td>&#xA0;</td>
+									<td class="fieldValue" align="right" valign="top">&#xA0;&#xA0;
+										1.792.150,80									</td>
+								</tr>
+								<!-- <tr>
+									<td colspan="5" style="text-align: center; font-size: 11px; color: gray;">
+										LOAD MORE +
+									</td>
+								</tr> -->
+
+							</tbody>
+						</table>
+						<p>
+							<b>&#xA0;&#xA0; Catatan :</b>
+						</p>
+						<ul>
+							<li>Data mutasi rekening ini adalah posisi data ER</li>
+
+						</ul>
+                    </div>
+
+					<div class="form-footer">
+						<div class="buttons">
+							<input name="Back" value="Kembali" onclick="history.back()" class="reset" type="button">
+							<input name="Close" value="Tutup" onclick="document.location=&apos;defaultpg/default_page&apos;" class="reset" type="button">
+							<input class="button" name="Print" value="Cetak" id="buttonPrint" type="button">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

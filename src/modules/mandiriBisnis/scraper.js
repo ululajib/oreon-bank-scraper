@@ -131,7 +131,8 @@ function getMutasi(http, options = {}) {
     .then((mutasi) => {
       return Object.assign({}, {
         mutasi,
-        cookie: parser.cookieHttp(http.getCookies())
+        cookie: parser.cookieHttp(http.getCookies()),
+        saldo: 0,
       })
     })
 
@@ -216,6 +217,24 @@ function getMutasi(http, options = {}) {
       }
       return {post, query: querystring.stringify(query)}
     }
+}
+
+function logout(http, options = {}) {
+  const {cridentials} = options;
+  let cookie = (cridentials.Cookie) ? cridentials.Cookie : '';
+  http.setCookies(cookie)
+  return Promise.resolve()
+    .then(() => {
+      const options = {
+        url: urls.logout,
+        qs: {
+          action: 'logout'
+        }
+      }
+      return http.get(options)
+        .get('body')
+        .tap(saveHtml('Logout'))
+    })
 }
 
 function setRefererHeader(options = {}, referer = '') {
