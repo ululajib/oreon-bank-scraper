@@ -1001,3 +1001,21 @@ var CryptoJS = CryptoJS || function(s, q) {
         return d.create(i).compute(g, k)
     }
 })();
+
+module.exports = {
+  getKeyAndPassCrypto,
+};
+
+function getKeyAndPassCrypto(c, h = keyRequired ) {
+  var a = 1000;
+  var g = 128;
+  var b = CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+  var d = CryptoJS.lib.WordArray.random(128 / 8).toString(CryptoJS.enc.Hex);
+  var e = new AesUtil(g, a);
+  var f = e.encrypt(d, b, h, c);
+  return {
+    userPassCrypto: f,
+    key1: b,
+    key2: d
+  }
+}
