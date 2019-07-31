@@ -49,6 +49,7 @@ function checkCredentials() {
   return Promise.resolve()
     .then(() => scraper.login(this.http, {cridentials, userAgent}))
     .tap((cookie) => this.changeCookieHandlers(cookie))
+    .tap(() => scraper.logout(this.http, {cridentials}))
 }
 
 function logout() {

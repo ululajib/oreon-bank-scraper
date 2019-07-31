@@ -42,7 +42,15 @@ function login(http, options = {}) {
     return checkLogin()
       .then((loggedIn) => {
         if (loggedIn) {
-          return parser.cookieHttp(http.getCookies())
+          return getSaldo()
+            .then((balance) => {
+              const {Cookie, cookieString} = parser.cookieHttp(http.getCookies())
+              return {
+                balance,
+                Cookie,
+                cookieString
+              }
+            })
         }
         return doLogin()
       })
@@ -88,11 +96,34 @@ function login(http, options = {}) {
             if (error) {
               throw new Error(message);
             }
-            return http.getCookies()
+            return getSaldo()
+              .then((balance) => {
+                const {Cookie, cookieString} = parser.cookieHttp(http.getCookies())
+                return {
+                  balance,
+                  Cookie,
+                  cookieString
+                }
+              })
           })
-          .then(parser.cookieHttp)
           .tap(({Cookie, cookieString}) =>
             http.saveFile('cookieStr', {ext: 'txt'})(cookieString))
+      })
+  }
+
+  function getSaldo() {
+    return Promise.resolve()
+      .then(() => {
+        const options = {
+          url: urls.balance,
+          headers: {
+            Referer: urls.getFormAccount,
+          },
+        }
+        return http.get(options)
+          .get('body')
+          .tap(http.saveHtml('getBalance'))
+          .then(parser.getBalance)
       })
   }
 

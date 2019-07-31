@@ -24,7 +24,7 @@ test('Parser BRI - checkErrorBRR2009', (assert) => {
   assert.ok(Boolean(data), 'Parser getFormMutasi ok')
 })
 
-test.only('Parser BRI - getMutasiData', (assert) => {
+test('Parser BRI - getMutasiData', (assert) => {
   assert.plan(1)
   const html = getHTML('formMutasi0');
   const result = BriParser.getMutasiData(html);
@@ -47,6 +47,15 @@ test('Parser BRI - cookieHttp', (assert) => {
   console.log(result);
   assert.ok(Boolean(result), 'Parser bri berhasil.')
 })
+
+test.only('Parser BRI - getSaldo', (assert) => {
+  assert.plan(1)
+  const html = getHTML('getBalance');
+  const result = BriParser.getBalance(html);
+  console.log(result);
+  assert.ok(Boolean(result), 'Parser bri berhasil.')
+})
+
 
 function cookieStr() {
   return [

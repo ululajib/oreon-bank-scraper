@@ -13,6 +13,7 @@ const urls = {
   getFormMutasi: `${uri}ib-bri/AccountStatement.html`,
   getMutasi: `${uri}ib-bri/Br11600d.html`,
   logout: `${uri}ib-bri/Logout.html`,
+  balance: `${uri}ib-bri/BalanceInquiry.html`
 }
 
 module.exports = urls;

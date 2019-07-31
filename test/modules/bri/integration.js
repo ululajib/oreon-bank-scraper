@@ -19,7 +19,7 @@ const briScraper = BriScraper({cridentials});
 
 console.log(briScraper.cookieHandlers);
 
-test('Integration BRI - checkCredentials', (assert) => {
+test.only('Integration BRI - checkCredentials', (assert) => {
   assert.plan(1);
   briScraper.checkCredentials()
     .then((result) => {
@@ -39,7 +39,7 @@ test('Integration BRI - logout', (assert) => {
     .catch(assert.end)
 })
 
-test.only('Integration BRI - getMutasi', (assert) => {
+test('Integration BRI - getMutasi', (assert) => {
   assert.plan(1);
   const query = {
     from_date: '01-06-2019',

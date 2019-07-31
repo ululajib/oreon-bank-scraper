@@ -13,6 +13,19 @@ module.exports = {
   getDataMutasi,
   checkIsUseAccount,
   concatArrayMutasi,
+  getBalance,
+}
+
+function getBalance(html) {
+  const $ = cheerio.load(html)
+  const tagTr = $('#tabel-saldo').find('tr[class="x"]').get()
+  const balance = tagTr.map((item) => {
+    const tds = $(item).find('td')
+    const noRek = tds.eq(0).text().trim()
+    const saldo = tds.eq(4).text().trim().replace(/\./g, '')
+    return {noRek, saldo}
+  })
+  return balance;
 }
 
 function concatArrayMutasi(array) {
