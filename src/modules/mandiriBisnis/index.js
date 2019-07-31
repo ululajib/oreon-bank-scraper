@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const Promise = require('bluebird');
 const Oreon = require('oreon-scraper');
 const Http = require('http-scraper');

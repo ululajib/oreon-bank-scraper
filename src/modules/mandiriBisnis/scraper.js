@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const phantom = require('phantom');
 const Promise = require('bluebird');
 const parser = require('./parser');
@@ -10,6 +11,7 @@ const querystring = require('querystring');
 const Scraper = {
   login,
   getMutasi,
+  logout,
 }
 module.exports = Scraper;
 function login(http, options = {}) {
@@ -123,7 +125,7 @@ function getMutasi(http, options = {}) {
     .then((noReks) => {
       return Promise.mapSeries(noReks, (noRek, index) =>
         Promise.resolve({noRek, index})
-          .then(({noRek, index}) => getMutasion({noRek, index}))
+          .then(({noRek, index}) => getMutasion({noRek, index, query}))
       )
     })
     .then(parser.concatArrayMutasi)
@@ -136,8 +138,8 @@ function getMutasi(http, options = {}) {
       })
     })
 
-    function getMutasion({noRek, index}) {
-      const postQuery = generatePostQuery(noRek)
+    function getMutasion({noRek, index, query}) {
+      const postQuery = generatePostQuery(noRek, query)
       const options = {
         url: `${urls.getMutasi}${postQuery.query}`,
         form: postQuery.post,
@@ -148,18 +150,18 @@ function getMutasi(http, options = {}) {
         .then((html) => parser.parserMutasi({html, noRek}))
     }
 
-    function generatePostQuery(noRek) {
-      let {from_date, to_date} = query;
-      from_date = from_date.split('-')
-      to_date = to_date.split('-')
+    function generatePostQuery(noRek, queries) {
+      let {from_date, to_date} = queries;
+      from_date = moment(from_date).format('DD-MM-YYYY').split('-');
+      to_date = moment(to_date).format('DD-MM-YYYY').split('-');
       let today = new Date();
-      let transferDateDay1 = from_date[0];
-      let transferDateMonth1 = from_date[1];
-      let transferDateYear1 = from_date[2];
-      let transferDateDay2 = to_date[0];
-      let transferDateMonth2 = to_date[1];
-      let transferDateYear2 = to_date[2];
-      let transactionType = '%25';
+      let transferDateDay1 = Number(from_date[0]);
+      let transferDateMonth1 = Number(from_date[1]);
+      let transferDateYear1 = Number(from_date[2]);
+      let transferDateDay2 = Number(to_date[0]);
+      let transferDateMonth2 = Number(to_date[1]);
+      let transferDateYear2 = Number(to_date[2]);
+      let transactionType = '%';
       let timeLength =  new Date(today.getFullYear(), today.getMonth() + 1 , 0).getDate();
       let showTimeLength = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
       let screenState = 'TRX_DATE';
@@ -221,8 +223,6 @@ function getMutasi(http, options = {}) {
 
 function logout(http, options = {}) {
   const {cridentials} = options;
-  let cookie = (cridentials.Cookie) ? cridentials.Cookie : '';
-  http.setCookies(cookie)
   return Promise.resolve()
     .then(() => {
       const options = {
@@ -233,7 +233,7 @@ function logout(http, options = {}) {
       }
       return http.get(options)
         .get('body')
-        .tap(saveHtml('Logout'))
+        .tap(http.saveHtml('Logout'))
     })
 }
 

@@ -209,7 +209,6 @@ function getMutasi(http, options = {}) {
                 },
                 form,
               }
-              console.log(options);
               return http.post(options)
                 .get('body')
                 .tap(http.saveHtml(`mutasiWithNorek${index}`))
