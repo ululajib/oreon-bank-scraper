@@ -247,7 +247,6 @@ BNI.prototype.parseMutasi = function (body) {
   let selector = /Pagination/g.test(body) ? '#Pagination' : '#TitleBar';
   $(selector).children('table').each(function(index, el) {
     if (!saldo && /saldo/i.test($(this).text())) {
-      console.log(index);
       saldo = $(this).find('.BodytextCol2').text();
     }
     if(/tanggal transaksi/i.test($(this).text())) {
