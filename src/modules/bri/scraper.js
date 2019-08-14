@@ -200,6 +200,17 @@ function logout(http, options = {}) {
         .get('body')
         .tap(http.saveHtml('logout'))
     })
+    .then(() => {
+      const options = {
+        url: 'https://ib.bri.co.id/ib-bri/id/logout.htm',
+        headers: {
+          Referer: 'https://ib.bri.co.id/ib-bri/Logout.html',
+        }
+      }
+      return http.get(options)
+        .get('body')
+        .tap(http.saveHtml('logout2'))
+    })
 }
 
 function getMutasi(http, options = {}) {
